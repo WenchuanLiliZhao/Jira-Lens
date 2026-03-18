@@ -1,0 +1,79 @@
+/**
+ * ButtonGroup Component Styles
+ *
+ * Groups buttons with optional segmented (merged) appearance.
+ * Supports selection modes and full-width layout.
+ * Uses CSS Modules to avoid style conflicts.
+ */
+
+.button-group {
+  display: inline-flex;
+  box-sizing: border-box;
+}
+
+.button-group--horizontal {
+  flex-direction: row;
+}
+
+.button-group--vertical {
+  flex-direction: column;
+}
+
+// Full width: buttons expand to fill container
+.button-group--full-width {
+  display: flex;
+  width: 100%;
+
+  & > * {
+    flex: 1;
+    min-width: 0; // Prevent flex items from overflowing
+  }
+}
+
+// Segmented: merged borders, no gap
+.button-group--segmented {
+  gap: 0;
+}
+
+.button-group--segmented.button-group--horizontal > * {
+  position: relative;
+  
+  &:not(:first-child) {
+    margin-left: -1px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    
+    // Clip only the outline-border element to prevent border overlap darkening
+    :global(.outline-border) {
+      clip-path: inset(0 0 0 1px);
+    }
+  }
+  &:not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+.button-group--segmented.button-group--vertical > * {
+  position: relative;
+  
+  &:not(:first-child) {
+    margin-top: -1px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    
+    // Clip only the outline-border element to prevent border overlap darkening
+    :global(.outline-border) {
+      clip-path: inset(1px 0 0 0);
+    }
+  }
+  &:not(:last-child) {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+// Non-segmented: gap between buttons
+.button-group:not(.button-group--segmented) {
+  gap: 8px;
+}

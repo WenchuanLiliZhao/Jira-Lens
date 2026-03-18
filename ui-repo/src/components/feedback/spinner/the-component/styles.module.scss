@@ -1,0 +1,70 @@
+/**
+ * Spinner Component Styles
+ * 
+ * AI Hint: This file contains all styles for the Spinner component.
+ * Uses CSS Modules to avoid style conflicts.
+ *
+ * AI COLOR GUIDANCE:
+ * Use CSS variables from @global-styles/color.scss
+ * - Semantic colors: var(--use-text-prime), var(--use-bg-prime), var(--use-border-prime)
+ * - Chart colors: var(--chart-rainbow-blue-100), var(--chart-black-alpha-40-hex)
+ * DO NOT use hardcoded hex values - always use design token variables.
+ */
+
+// ============ VARIABLES ============
+
+$spinner-size-small: 16px;
+$spinner-size-medium: 24px;
+$spinner-size-large: 32px;
+
+$spinner-border-width-small: 2px;
+$spinner-border-width-medium: 2px;
+$spinner-border-width-large: 3px;
+
+$spinner-animation-duration: 0.6s;
+
+// ============ ANIMATION ============
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+// ============ SPINNER ============
+
+.spinner {
+  display: block;
+  border-radius: 50%;
+  border-style: solid;
+  border-color: var(--use-border-prime);
+  border-top-color: var(--use-text-prime);
+  animation: spin $spinner-animation-duration linear infinite;
+
+  &--small {
+    width: $spinner-size-small;
+    height: $spinner-size-small;
+    border-width: $spinner-border-width-small;
+  }
+
+  &--medium {
+    width: $spinner-size-medium;
+    height: $spinner-size-medium;
+    border-width: $spinner-border-width-medium;
+  }
+
+  &--large {
+    width: $spinner-size-large;
+    height: $spinner-size-large;
+    border-width: $spinner-border-width-large;
+  }
+}
+
+// ============ WRAPPER (for absolute positioning) ============
+
+.spinner-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  pointer-events: none; // Prevent wrapper from blocking clicks
+}

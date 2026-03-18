@@ -1,0 +1,44 @@
+/**
+ * Modal Demo Page Styles
+ */
+
+.component-demo-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+
+  h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: var(--use-text-prime);
+  }
+}
+
+.component-demo-section {
+  margin-bottom: 48px;
+  padding: 24px;
+  border: 1px solid var(--use-border-prime);
+  border-radius: 12px;
+  background: var(--use-bg-prime);
+
+  h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--use-text-prime);
+  }
+
+  > p {
+    font-size: 14px;
+    color: var(--use-text-secondary);
+    margin-bottom: 20px;
+  }
+}
+
+.demo-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}

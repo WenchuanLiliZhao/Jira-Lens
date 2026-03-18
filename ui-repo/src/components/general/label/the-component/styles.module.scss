@@ -1,0 +1,109 @@
+/**
+ * Label Component Styles
+ * 
+ * AI Hint: This file contains all styles for the Label component.
+ * Uses CSS Modules to avoid style conflicts.
+ * 
+ * Architecture:
+ * - Direct color application (no opacity layers)
+ * - Uses CSS variables from color.scss for default colors
+ * - Supports custom colors via inline styles
+ */
+
+.label {
+  // Base styles
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-weight: 500;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  
+  // Default colors (can be overridden by inline styles)
+  color: var(--chart-black-alpha-90-hex);
+  background-color: transparent;
+  
+  // Icon styles
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  
+  &__text {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  // Size modifiers
+  &--size {
+    &-small {
+      // Total height: 20px
+      padding: 3px 5px;
+      border-radius: 4px;
+      gap: 4px;
+      
+      .label__text {
+        font-size: 12px;
+        line-height: 16px;
+      }
+      
+      .label__icon {
+        font-size: 14px;
+        height: 16px;
+      }
+    }
+
+    &-medium {
+      // Total height: 24px (CRITICAL REQUIREMENT)
+      padding: 4px 6px;
+      border-radius: 4px;
+      gap: 4px;
+      
+      .label__text {
+        font-size: 14px;
+        line-height: 16px;
+      }
+      
+      .label__icon {
+        font-size: 16px;
+        height: 16px;
+      }
+    }
+
+    &-large {
+      // Total height: 28px
+      padding: 6px 10px;
+      border-radius: 4px;
+      gap: 6px;
+      
+      .label__text {
+        font-size: 16px;
+        line-height: 16px;
+      }
+      
+      .label__icon {
+        font-size: 18px;
+        height: 16px;
+      }
+    }
+  }
+
+  // Variant modifiers
+  &--variant {
+    &-filled {
+      // Default background color (can be overridden by inline style)
+      background-color: var(--chart-black-alpha-4-hex);
+    }
+
+    &-outlined {
+      background-color: transparent;
+      border: 1px solid var(--chart-black-alpha-15-hex);
+    }
+  }
+}

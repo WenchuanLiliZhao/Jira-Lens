@@ -1,0 +1,15 @@
+/**
+ * AmapMap Component Styles
+ */
+
+.mapWrapper {
+  position: relative;
+  overflow: hidden;
+  // 默认不设高度，由使用者通过 style prop 指定
+}
+
+// MapLibre 控件样式微调
+:global(.maplibregl-ctrl-bottom-left),
+:global(.maplibregl-ctrl-bottom-right) {
+  font-size: 10px;
+}

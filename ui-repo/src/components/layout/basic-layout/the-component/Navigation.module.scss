@@ -1,0 +1,52 @@
+/**
+ * BasicLayout.Navigation Component Styles
+ *
+ * AI Hint: This file contains styles for the Navigation subcomponent.
+ * Uses CSS Modules to avoid style conflicts.
+ *
+ * Note: Uses CSS variables defined in the parent .basic-layout:
+ * - --nav-height
+ * - --nav-paddign
+ *
+ * AI COLOR GUIDANCE:
+ * Use CSS variables from @global-styles/color.scss
+ * - Semantic colors: var(--use-text-prime), var(--use-bg-prime), var(--use-border-prime)
+ * - Chart colors: var(--chart-rainbow-blue-100), var(--chart-black-alpha-40-hex)
+ * DO NOT use hardcoded hex values - always use design token variables.
+ */
+
+.navigation {
+  display: inherit;
+
+  .scrollable-part {
+    height: var(--nav-height);
+  }
+
+  .fixed-part {
+    height: var(--nav-height);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Above map canvas; dropdown (1000+) renders in portal */
+    background-color: var(--use-bg-prime);
+    border-bottom: 1px solid var(--use-border-prime);
+
+    display: flex;
+    justify-content: space-between;
+    padding: 0 var(--nav-paddign);
+    align-items: center;
+  }
+
+  .navigation-start {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .navigation-end {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+}

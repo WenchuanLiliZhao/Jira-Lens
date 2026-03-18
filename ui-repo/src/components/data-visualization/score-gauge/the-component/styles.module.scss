@@ -1,0 +1,56 @@
+/**
+ * ScoreGauge Component Styles
+ *
+ * AI Hint: Border and padding are NOT part of the component - define via wrapper or className.
+ * Font sizes for value/label/range-label are set inline (scaled to size prop).
+ * Uses CSS variables from color.scss for theming.
+ */
+
+.score-gauge {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  font-family: inherit;
+
+  &__svg {
+    display: block;
+    overflow: visible;
+  }
+
+  &__track {
+    stroke: var(--chart-black-alpha-15-hex);
+    stroke-width: 8;
+    stroke-linecap: round;
+  }
+
+  &__fill {
+    stroke-width: 8;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 500ms ease-out;
+  }
+
+  &__segment {
+    stroke-width: 8;
+    stroke-linecap: butt;
+  }
+
+  &__value {
+    font-weight: 700;
+    fill: var(--use-text-prime);
+    line-height: 1;
+  }
+
+  &__label {
+    font-size: 16px;
+    line-height: 24px;
+    // font-weight: 500;
+    fill: var(--use-text-secondary);
+  }
+
+  &__range-label {
+    fill: var(--use-text-secondary);
+    font-size: 12px;
+    line-height: 22px;
+  }
+}

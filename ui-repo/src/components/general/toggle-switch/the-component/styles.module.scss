@@ -1,0 +1,94 @@
+/**
+ * ToggleSwitch Component Styles
+ * 
+ * AI Hint: This file contains all styles for the ToggleSwitch component.
+ * Uses CSS Modules to avoid style conflicts.
+ *
+ * AI COLOR GUIDANCE:
+ * Use CSS variables from @global-styles/color.scss
+ * - Semantic colors: var(--use-text-prime), var(--use-bg-prime), var(--use-border-prime)
+ * - Chart colors: var(--chart-rainbow-blue-100), var(--chart-black-alpha-40-hex)
+ * DO NOT use hardcoded hex values - always use design token variables.
+ */
+
+// ============ MAIN COMPONENT ============
+
+.toggle-switch {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  
+  // When label is present, space between label and switch
+  &:has(.toggle-switch__label) {
+    justify-content: space-between;
+  }
+  
+  // When no label, just center the switch
+  &:not(:has(.toggle-switch__label)) {
+    justify-content: center;
+  }
+}
+
+// ============ LABEL ============
+
+.toggle-switch__label {
+  flex: 1;
+  text-align: left;
+  color: var(--use-text-prime);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+// ============ SWITCH ============
+
+.toggle-switch__switch {
+  // Base switch styles
+  position: relative;
+  width: 36px;
+  height: 20px;
+  background: var(--use-bg-tool-bg);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 120ms ease;
+  flex-shrink: 0;
+  padding: 0;
+  
+  &:focus {
+    outline: none;
+  }
+  
+  &:focus-visible {
+    outline: 2px solid var(--chart-rainbow-blue-100);
+    outline-offset: 2px;
+  }
+  
+  // Checked state
+  &[data-state="checked"] {
+    background: var(--chart-rainbow-blue-100);
+    
+    .toggle-switch__switch-thumb {
+      transform: translateX(16px);
+    }
+  }
+  
+  // Disabled state
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// ============ SWITCH THUMB ============
+
+.toggle-switch__switch-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 120ms ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}

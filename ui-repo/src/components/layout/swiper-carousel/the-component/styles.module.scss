@@ -1,0 +1,89 @@
+/**
+ * SwiperCarousel Component Styles
+ * 
+ * AI Hint: This file contains all styles for the SwiperCarousel component.
+ * Uses CSS Modules to avoid style conflicts.
+ *
+ * AI COLOR GUIDANCE:
+ * Use CSS variables from @global-styles/color.scss
+ * - Semantic colors: var(--use-text-prime), var(--use-bg-prime), var(--use-border-prime)
+ * - Chart colors: var(--chart-rainbow-blue-100), var(--chart-black-alpha-40-hex)
+ * DO NOT use hardcoded hex values - always use design token variables.
+ */
+
+.swiper-carousel {
+  position: relative;
+  width: 100%;
+  overflow: visible; /* Allow pagination to be visible */
+}
+
+.swiper-container {
+  width: 100%;
+  height: 100%;
+  position: relative; /* Ensure pagination can be positioned relative to container */
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Navigation Buttons - Using :global() for Swiper's default classes */
+:global(.swiper-button-next),
+:global(.swiper-button-prev) {
+  color: var(--use-icon-prime) !important;
+  background: var(--use-bg-tool-bg) !important;
+  border-radius: 50% !important;
+  width: 40px !important;
+  height: 40px !important;
+  margin-top: 0 !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  transition: all 0.2s ease !important;
+
+  &::after {
+    font-size: 16px !important;
+    font-weight: bold !important;
+  }
+
+  &:hover {
+    background: var(--use-hover-box-hover) !important;
+    color: var(--use-icon-emph) !important;
+  }
+
+  &:active {
+    background: var(--use-hover-box-mouse-down) !important;
+  }
+}
+
+:global(.swiper-button-next) {
+  right: 10px !important;
+}
+
+:global(.swiper-button-prev) {
+  left: 10px !important;
+}
+
+:global(.swiper-button-disabled) {
+  opacity: 0.35 !important;
+  cursor: auto !important;
+  pointer-events: none !important;
+}
+
+/* Vertical Direction Adjustments - Navigation only */
+.swiper-container[data-direction="vertical"] {
+  :global(.swiper-button-next) {
+    right: 50% !important;
+    bottom: 10px !important;
+    top: auto !important;
+    transform: translateX(50%) rotate(90deg) !important;
+  }
+
+  :global(.swiper-button-prev) {
+    left: 50% !important;
+    top: 10px !important;
+    transform: translateX(-50%) rotate(90deg) !important;
+  }
+}

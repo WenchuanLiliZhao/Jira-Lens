@@ -1,0 +1,13 @@
+/**
+ * DevToolsFAB Component Styles
+ * 
+ * AI Hint: This file contains all styles for the DevToolsFAB component.
+ * Uses CSS Modules to avoid style conflicts.
+ */
+
+.dev-tools-fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+}

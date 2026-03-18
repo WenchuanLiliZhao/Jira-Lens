@@ -1,0 +1,285 @@
+/**
+ * PieChart Component Styles
+ *
+ * Uses CSS variables from the global color system (color.scss).
+ * BEM-like naming convention for modifiers.
+ * 
+ * @see ui-repo/src/global-styles/color.scss
+ */
+
+/* -------------------------------------------------------------------------- */
+/*                             CSS Variables                                  */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Component-level CSS variables that reference global color tokens.
+ * This provides a clear mapping and easy customization.
+ */
+:root {
+  --pie-chart-font-family: var(
+    --font-family-sans,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    'Noto Sans',
+    sans-serif
+  );
+  
+  // Text colors from global color system
+  --pie-chart-text-color: var(--use-text-secondary, var(--chart-black-alpha-40-hex));
+  --pie-chart-text-color-muted: var(--use-text-secondary-trans, var(--chart-black-alpha-40));
+  --pie-chart-text-color-primary: var(--use-text-prime, var(--chart-black-alpha-90-hex));
+  
+  // Surface colors from global color system
+  --pie-chart-tooltip-bg: var(--use-bg-prime, var(--chart-black-alpha-0-hex));
+  --pie-chart-tooltip-border: var(--use-border-prime, var(--chart-black-alpha-15-hex));
+  --pie-chart-tooltip-shadow: var(--use-shadow-popup-default, rgba(0, 0, 0, 0.16));
+}
+
+/* -------------------------------------------------------------------------- */
+/*                             Container Styles                               */
+/* -------------------------------------------------------------------------- */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  font-family: var(--pie-chart-font-family);
+
+  /* Remove focus outline for cleaner interaction */
+  &:focus {
+    outline: none;
+  }
+
+  /* Ensure SVG elements don't get clipped */
+  & svg {
+    overflow: visible;
+    flex-shrink: 0;
+  }
+
+  /* Chart wrapper centering */
+  > svg {
+    margin: 0 auto;
+  }
+
+  /* Right-side legend layout modifier */
+  &--right {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+
+  /* Empty state modifier */
+  &--empty {
+    justify-content: center;
+    align-items: center;
+    min-height: 120px;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                               Chart Wrapper                                */
+/* -------------------------------------------------------------------------- */
+
+.chart-wrapper {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                               Label Styles                                 */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Label layer containing all labels and guide lines.
+ * Positioned as an overlay on the pie chart SVG.
+ */
+.label-layer {
+  pointer-events: none;
+}
+
+/**
+ * Individual label group (guide line + text).
+ */
+.label-group {
+  pointer-events: none;
+}
+
+/**
+ * Guide line connecting pie slice to label.
+ * Uses a three-segment polyline: pie edge -> elbow -> label.
+ */
+.guide-line {
+  fill: none;
+  stroke: var(--pie-chart-text-color-muted, rgba(0, 0, 0, 0.4));
+  stroke-width: 1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/**
+ * Small dot at the pie edge where guide line starts.
+ */
+.guide-dot {
+  fill: var(--pie-chart-text-color-muted, rgba(0, 0, 0, 0.4));
+}
+
+/**
+ * Label text positioned at the end of the guide line.
+ */
+.label {
+  font-size: 10px;
+  line-height: 14px;
+  font-weight: 500;
+  fill: var(--pie-chart-text-color);
+}
+
+/* -------------------------------------------------------------------------- */
+/*                               Legend Styles                                */
+/* -------------------------------------------------------------------------- */
+
+.legend-container {
+  width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  /* Right-side layout modifier */
+  &--right {
+    width: auto;
+    padding-left: 0;
+    padding-right: 0;
+    flex-shrink: 1;
+    min-width: 0;
+  }
+}
+
+.legend-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 0.5rem;
+
+  /* Right-side layout modifier */
+  &--right {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: 0;
+  }
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--pie-chart-text-color);
+  min-width: 0;
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.legend-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+
+  /* Scale down icons if they're larger */
+  > * {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+.legend-text {
+  font-size: 12px;
+  line-height: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.legend-count {
+  color: var(--pie-chart-text-color-muted);
+}
+
+/* -------------------------------------------------------------------------- */
+/*                              Tooltip Styles                                */
+/* -------------------------------------------------------------------------- */
+
+.tooltip {
+  position: relative;
+  z-index: 1000;
+  background: var(--pie-chart-tooltip-bg);
+  border: 1px solid var(--pie-chart-tooltip-border);
+  border-radius: 6px;
+  padding: 8px 12px;
+  box-shadow: var(--pie-chart-tooltip-shadow);
+  font-family: var(--pie-chart-font-family);
+  font-size: 12px;
+  line-height: 1.5;
+  min-width: 80px;
+}
+
+.tooltip-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.tooltip-color {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.tooltip-name {
+  font-weight: 500;
+  color: var(--pie-chart-text-color);
+}
+
+.tooltip-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--pie-chart-text-color-primary);
+}
+
+.tooltip-unit {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--pie-chart-text-color-muted);
+  margin-left: 2px;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                              Empty State                                   */
+/* -------------------------------------------------------------------------- */
+
+.empty-message {
+  font-size: 14px;
+  color: var(--pie-chart-text-color-muted);
+  text-align: center;
+}

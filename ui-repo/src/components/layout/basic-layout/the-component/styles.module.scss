@@ -1,0 +1,26 @@
+/**
+ * BasicLayout Component Styles
+ *
+ * AI Hint: This file contains root layout styles for the BasicLayout component.
+ * Subcomponent styles are in their respective .module.scss files.
+ * Uses CSS Modules to avoid style conflicts.
+ *
+ * AI COLOR GUIDANCE:
+ * Use CSS variables from @global-styles/color.scss
+ * - Semantic colors: var(--use-text-prime), var(--use-bg-prime), var(--use-border-prime)
+ * - Chart colors: var(--chart-rainbow-blue-100), var(--chart-black-alpha-40-hex)
+ * DO NOT use hardcoded hex values - always use design token variables.
+ */
+
+.basic-layout {
+  // CSS variables used by subcomponents
+  --nav-height: 56px;
+  --nav-paddign: 16px;
+  --page-content-height: calc(100vh - var(--nav-height));
+
+  .page-content {
+    height: var(--page-content-height);
+    display: flex;
+    flex-direction: row;
+  }
+}

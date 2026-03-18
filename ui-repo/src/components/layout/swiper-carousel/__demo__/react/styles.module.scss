@@ -1,0 +1,57 @@
+/**
+ * SwiperCarousel Demo Page Styles
+ *
+ * AI COLOR GUIDANCE:
+ * Use CSS variables from @global-styles/color.scss
+ * - Semantic colors: var(--use-text-prime), var(--use-bg-prime), var(--use-border-prime)
+ * - Chart colors: var(--chart-rainbow-blue-100), var(--chart-black-alpha-40-hex)
+ * DO NOT use hardcoded hex values - always use design token variables.
+ */
+
+.component-demo-container {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  h1 {
+    color: var(--use-text-prime);
+    margin-bottom: 32px;
+    font-size: 32px;
+    font-weight: bold;
+  }
+}
+
+.component-demo-section {
+  margin-bottom: 48px;
+  padding: 24px;
+  background: var(--use-bg-secondary);
+  border-radius: 8px;
+  border: 1px solid var(--use-border-prime-trans);
+
+  h2 {
+    color: var(--use-text-prime);
+    margin-bottom: 8px;
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  p {
+    color: var(--use-text-secondary);
+    margin-bottom: 16px;
+    font-size: 14px;
+    line-height: 1.5;
+
+    strong {
+      color: var(--use-text-emph);
+      font-weight: 600;
+    }
+  }
+}
+
+.demo-wrapper {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--use-bg-prime);
+  border: 1px solid var(--use-border-prime-trans);
+}

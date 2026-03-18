@@ -1,0 +1,143 @@
+/**
+ * Calendar Component Styles
+ *
+ * AI COLOR GUIDANCE:
+ * Use CSS variables from @global-styles/color.scss
+ * - Semantic colors: var(--use-text-prime), var(--use-bg-prime), var(--use-border-prime)
+ * - Chart colors: var(--chart-rainbow-blue-100), var(--chart-black-alpha-40-hex)
+ * DO NOT use hardcoded hex values - always use design token variables.
+ */
+
+.calendar {
+  display: inline-flex;
+  flex-direction: column;
+  width: fit-content;
+}
+
+.calendarContent {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 0;
+}
+
+.navButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  font-size: 20px;
+  line-height: 1;
+  color: var(--use-text-prime);
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--use-hover-box-hover);
+  }
+
+  &:active {
+    background-color: var(--use-hover-box-mouse-down);
+  }
+}
+
+.monthYear {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--use-text-prime);
+}
+
+.weekdayRow {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.weekdayCell {
+  padding: 4px 0;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--use-text-secondary);
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  gap: 2px;
+}
+
+.dayCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0;
+  font-size: 13px;
+  color: var(--use-text-prime);
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    background-color: var(--use-hover-box-hover);
+  }
+
+  &:active:not(:disabled) {
+    background-color: var(--use-hover-box-mouse-down);
+  }
+}
+
+.dayCurrentMonth {
+  color: var(--use-text-prime);
+}
+
+.dayCell:not(.dayCurrentMonth) {
+  color: var(--use-text-secondary);
+}
+
+.dayToday {
+  font-weight: 600;
+  color: var(--chart-rainbow-blue-100);
+}
+
+.daySelected {
+  background-color: var(--chart-rainbow-blue-100);
+  color: white;
+
+  &:hover:not(:disabled) {
+    background-color: var(--chart-rainbow-blue-60);
+  }
+}
+
+.dayToday.daySelected {
+  color: white;
+}
+
+.dayInRange {
+  background-color: var(--chart-rainbow-blue-20);
+  color: var(--use-text-prime);
+
+  &:hover:not(:disabled) {
+    background-color: var(--chart-rainbow-blue-40);
+  }
+}
+
+.dayDisabled {
+  color: var(--use-text-negative);
+  cursor: not-allowed;
+  opacity: 0.6;
+}

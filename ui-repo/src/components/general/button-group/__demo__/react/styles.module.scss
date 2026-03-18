@@ -1,0 +1,83 @@
+/**
+ * ButtonGroup Component Demo Styles
+ *
+ * AI Hint: This file contains styles for the comprehensive demo page
+ * showcasing all ButtonGroup features.
+ */
+
+.component-demo-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: var(--use-text-prime);
+    border-bottom: 2px solid var(--use-border-default);
+    padding-bottom: 16px;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    margin-bottom: 24px;
+    color: var(--use-text-prime);
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+    color: var(--use-text-secondary);
+    font-weight: 600;
+  }
+
+  p {
+    margin: 0 0 12px 0;
+    line-height: 1.6;
+  }
+}
+
+.component-demo-section {
+  margin-bottom: 48px;
+  padding: 32px;
+  background-color: var(--use-bg-secondary);
+  border-radius: 12px;
+  border: 1px solid var(--use-border-default);
+}
+
+.demo-subsection {
+  margin-bottom: 32px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.demo-description {
+  color: var(--use-text-tertiary);
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-bottom: 16px;
+}
+
+.demo-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 16px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.demo-value {
+  padding: 8px 16px;
+  background-color: var(--use-bg-tertiary);
+  border-radius: 6px;
+  font-family: monospace;
+  font-size: 0.9rem;
+  color: var(--use-text-secondary);
+  border: 1px solid var(--use-border-subtle);
+}

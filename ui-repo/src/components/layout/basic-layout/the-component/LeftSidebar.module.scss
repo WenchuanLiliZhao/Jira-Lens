@@ -1,0 +1,61 @@
+/**
+ * BasicLayout.LeftSidebar Component Styles
+ *
+ * AI Hint: This file contains styles for the LeftSidebar subcomponent.
+ * Uses CSS Modules to avoid style conflicts.
+ *
+ * AI COLOR GUIDANCE:
+ * Use CSS variables from @global-styles/color.scss
+ * - Semantic colors: var(--use-text-prime), var(--use-bg-prime), var(--use-border-prime)
+ * - Chart colors: var(--chart-rainbow-blue-100), var(--chart-black-alpha-40-hex)
+ * DO NOT use hardcoded hex values - always use design token variables.
+ */
+
+.left-sidebar {
+  position: relative;
+  height: 100%;
+  background-color: var(--use-bg-prime);
+  border-right: 1px solid var(--use-border-prime);
+  // transition: width 0.15s ease-out;
+  flex-shrink: 0;
+  overflow: hidden;
+
+  &.collapsed {
+    width: 0 !important;
+    border-right: none;
+
+    .left-sidebar-inner {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .left-sidebar-toggle {
+      // Keep toggle visible when collapsed for re-expansion
+      right: -4px;
+    }
+  }
+
+  .left-sidebar-inner {
+    height: 100%;
+    overflow-y: auto;
+    transition: opacity 0.15s ease-out;
+  }
+
+  .left-sidebar-toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 4px;
+    height: 100%;
+    cursor: col-resize;
+    z-index: 10;
+
+    &:hover {
+      background-color: var(--chart-rainbow-blue-100);
+    }
+
+    &.dragging {
+      background-color: var(--chart-rainbow-blue-100);
+    }
+  }
+}

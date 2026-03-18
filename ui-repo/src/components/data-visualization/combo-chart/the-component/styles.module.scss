@@ -1,0 +1,9 @@
+/**
+ * ComboChart Styles
+ *
+ * This component uses shared chart styles directly from _chart-shared/styles.module.scss.
+ * No component-specific styles are needed at this time.
+ *
+ * Previous approach using CSS Modules `composes` has been replaced with direct imports
+ * in ComponentContent.tsx to avoid IDE warnings about unknown properties.
+ */

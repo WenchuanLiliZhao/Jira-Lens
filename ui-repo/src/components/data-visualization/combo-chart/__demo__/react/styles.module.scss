@@ -1,0 +1,70 @@
+/**
+ * ComboChart Demo Page Styles
+ * 
+ * Follows column-chart/trend-chart demo style standard.
+ * @see ui-repo/src/global-styles/color.scss
+ */
+
+.page {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.pageTitle {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--use-text-prime, var(--chart-black-alpha-90-hex));
+}
+
+.pageDescription {
+  font-size: 16px;
+  color: var(--use-text-secondary-trans, var(--chart-black-alpha-40));
+  margin-bottom: 40px;
+}
+
+.categoryTitle {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 48px;
+  margin-bottom: 24px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--use-border-prime, var(--chart-black-alpha-15-hex));
+  color: var(--use-text-prime, var(--chart-black-alpha-90-hex));
+}
+
+.section {
+  margin-bottom: 48px;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--use-text-prime, var(--chart-black-alpha-90-hex));
+}
+
+.sectionDescription {
+  font-size: 14px;
+  color: var(--use-text-secondary-trans, var(--chart-black-alpha-40));
+  margin-bottom: 16px;
+}
+
+.chartContainer {
+  height: 300px;
+  border: 1px solid var(--use-border-prime, var(--chart-black-alpha-15-hex));
+  border-radius: 8px;
+  padding: 16px;
+  background: var(--use-bg-prime, var(--chart-black-alpha-0-hex));
+}
+
+.selectionInfo {
+  margin-top: 12px;
+  font-size: 14px;
+  color: var(--use-text-secondary-trans, var(--chart-black-alpha-40));
+
+  strong {
+    color: var(--use-text-prime, var(--chart-black-alpha-90-hex));
+  }
+}

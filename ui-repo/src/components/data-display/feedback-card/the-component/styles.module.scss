@@ -1,0 +1,115 @@
+/**
+ * FeedbackCard Component Styles
+ *
+ * AI Hint: This file contains all styles for the FeedbackCard component.
+ * Uses CSS Modules to avoid style conflicts.
+ * Uses CSS variables from color.scss for theming.
+ */
+
+.feedback-card {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  font-family: inherit;
+
+  /* Border and padding are NOT part of the component - define via wrapper or className */
+
+  // CSS variable defaults
+  --fc-gap: 12px;
+  --fc-comment-font-size: 14px;
+  --fc-comment-line-height: 20px;
+  --fc-score-font-size: 14px;
+  --fc-datetime-font-size: 13px;
+  --fc-datetime-line-height: 22px;
+  --fc-icon-font-size: 20px;
+  --fc-left-width: 28px;
+
+  &[data-size="small"] {
+    --fc-gap: 8px;
+    --fc-comment-font-size: 12px;
+    --fc-comment-line-height: 18px;
+    --fc-score-font-size: 12px;
+    --fc-datetime-font-size: 11px;
+    --fc-datetime-line-height: 18px;
+    --fc-icon-font-size: 16px;
+    --fc-left-width: 20px;
+  }
+
+  gap: var(--fc-gap);
+
+  &--clickable {
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--use-bg-secondary);
+    }
+  }
+
+  &__left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    flex-shrink: 0;
+    width: var(--fc-left-width);
+  }
+
+  &__center {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__sentiment-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: var(--fc-left-width);
+    font-size: var(--fc-icon-font-size);
+    color: var(--chart-black-alpha-60-hex);
+  }
+
+  &__comment {
+    flex: 0 1 auto; /* Don't grow; single-line with ellipsis */
+    font-size: var(--fc-comment-font-size);
+    line-height: var(--fc-comment-line-height);
+    color: var(--use-text-prime);
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__score {
+    flex-shrink: 0;
+    width: var(--fc-left-width);
+    font-size: var(--fc-score-font-size);
+    line-height: var(--fc-datetime-line-height);
+    font-weight: 700;
+    color: var(--use-text-prime);
+    text-align: center;
+  }
+
+  &__datetime {
+    flex-shrink: 0;
+    font-size: var(--fc-datetime-font-size);
+    color: var(--use-text-secondary);
+    line-height: var(--fc-datetime-line-height);
+  }
+
+  &__meta-content {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+}

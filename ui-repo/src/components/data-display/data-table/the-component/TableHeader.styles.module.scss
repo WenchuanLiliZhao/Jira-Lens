@@ -1,0 +1,123 @@
+/**
+ * DataTable Header Styles
+ * 
+ * Independent styles for table header component
+ */
+
+// ============================================================
+// Table header
+// DOM: thead > tr.data-table__header-row > th.data-table__header-cell
+// ============================================================
+
+.data-table__header-row {
+  border-bottom: 1px solid var(--use-border-prime);
+
+  // Modifier: sticky header
+  &--sticky {
+    th {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background-color: var(--use-bg-secondary);
+    }
+  }
+
+  .data-table__header-cell {
+    padding: var(--dt-cell-pad-v) var(--dt-cell-pad-h);
+    text-align: left;
+    font-weight: 600;
+    background-color: var(--use-bg-secondary);
+    white-space: nowrap;
+    user-select: none;
+
+    &:not(:last-child) {
+      border-right: 1px solid var(--use-border-prime);
+    }
+
+    // Modifier: sortable
+    &--sortable {
+      cursor: pointer;
+    }
+
+    // Modifier: text alignment
+    &--left {
+      text-align: left;
+    }
+
+    &--center {
+      text-align: center;
+    }
+
+    &--right {
+      text-align: right;
+    }
+
+    // Modifier: vertical alignment
+    &--vertical-center {
+      vertical-align: middle;
+    }
+
+    &--vertical-top {
+      vertical-align: top;
+    }
+
+    &--vertical-bottom {
+      vertical-align: bottom;
+    }
+
+    // Header content wrapper
+    // DOM: div.data-table__header-content
+    .data-table__header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      :hover {
+        .data-table__header-hover-overlay {
+          opacity: 1;
+        }
+      }
+
+      // DOM: div.data-table__header-main
+      .data-table__header-main {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        vertical-align: middle;
+
+        .data-table__header-icon-container {
+          margin-right: 2px;
+          
+          .data-table__header-icon {
+            color: var(--use-text-secondary);
+            line-height: 22px;
+          }
+        }
+
+        .data-table__header-label {
+          color: var(--use-text-secondary);
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 1;
+          line-clamp: 1;
+          -webkit-box-orient: vertical;
+        }
+      }
+
+      // Sort icon (shown when sortable)
+      .data-table__sort-icon-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        .data-table__sort-icon {
+          color: var(--use-text-secondary);
+
+          .data-table__header-cell--sortable:hover & {
+            color: var(--use-text-prime);
+          }
+        }
+      }
+    }
+  }
+}

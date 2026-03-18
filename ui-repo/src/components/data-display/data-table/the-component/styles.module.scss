@@ -1,0 +1,171 @@
+/**
+ * DataTable component styles
+ *
+ * Structure: nested to match DOM — container > table > thead/tbody > row > cell
+ */
+
+// ============================================================
+// Container
+// DOM: div.data-table-container
+// ============================================================
+.data-table-container {
+  width: 100%;
+  position: relative;
+  border: 1px solid var(--use-border-prime);
+  background-color: var(--use-bg-prime);
+
+  // CSS variable defaults — overridden by data-font-size="small"
+  --dt-font-size: 14px;
+  --dt-line-height: 22px;
+  --dt-cell-pad-v: 8px;
+  --dt-cell-pad-h: 12px;
+
+  &[data-font-size="small"] {
+    --dt-font-size: 12px;
+    --dt-line-height: 18px;
+    --dt-cell-pad-v: 4px;
+    --dt-cell-pad-h: 8px;
+  }
+
+  // Modifier: horizontal scrolling
+  &--horizontal-scroll {
+    overflow-x: auto;
+  }
+
+  // Modifier: vertical scrolling (when maxHeight is set)
+  &--vertical-scroll {
+    overflow-y: auto;
+  }
+
+  // ============================================================
+  // Table base
+  // DOM: table.data-table
+  // ============================================================
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--use-bg-prime);
+    color: var(--use-text-prime);
+
+    font-size: var(--dt-font-size);
+    line-height: var(--dt-line-height);
+
+    // Modifier: bordered
+    &--bordered {
+      .data-table__header-cell,
+      .data-table__cell {
+        &:not(:last-child) {
+          border-right: 1px solid var(--use-border-prime);
+        }
+      }
+    }
+
+    // Modifier: striped rows
+    &--striped {
+      .data-table__row:nth-child(even) {
+        background-color: var(--use-bg-secondary);
+      }
+    }
+
+    // ============================================================
+    // Table body
+    // DOM: tbody
+    // ============================================================
+    tbody {
+      // --------------------------------------------------------
+      // Data row
+      // DOM: tr.data-table__row > td.data-table__cell
+      // --------------------------------------------------------
+      .data-table__row {
+        // Modifier: clickable (when onRowClick is provided)
+        color: var(--use-text-prime);
+        
+        &--clickable {
+          cursor: pointer;
+        }
+
+        &:not(:first-child) {
+          border-top: 1px solid var(--use-border-prime);
+        }
+
+        .data-table__cell {
+          padding: var(--dt-cell-pad-v) var(--dt-cell-pad-h);
+          color: var(--use-text-prime);
+
+          &--left {
+            text-align: left;
+          }
+
+          &--center {
+            text-align: center;
+          }
+
+          &--right {
+            text-align: right;
+          }
+
+          &--vertical-center {
+            vertical-align: middle;
+          }
+
+          &--vertical-top {
+            vertical-align: top;
+          }
+
+          &--vertical-bottom {
+            vertical-align: bottom;
+          }
+        }
+      }
+
+      // --------------------------------------------------------
+      // Empty state row
+      // DOM: tr > td.data-table__empty-cell > div.data-table__empty
+      // --------------------------------------------------------
+      tr {
+        .data-table__empty-cell {
+          padding: 48px 16px;
+          text-align: center;
+          border: 1px solid var(--use-border-prime);
+
+          .data-table__empty {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            color: var(--use-text-secondary);
+
+            .data-table__empty-icon {
+              font-size: 3em;
+              opacity: 0.5;
+            }
+
+            .data-table__empty-text {
+              margin: 0;
+              font-size: 1em;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// ============================================================
+// Responsive (viewport width ≤ 768px)
+// ============================================================
+@media (max-width: 768px) {
+  .data-table-container {
+    font-size: 0.875rem;
+
+    .data-table__header-cell,
+    .data-table__cell {
+      padding: 8px 12px;
+    }
+
+    .data-table__header-content,
+    .data-table__group-header-content {
+      gap: 4px;
+    }
+  }
+}

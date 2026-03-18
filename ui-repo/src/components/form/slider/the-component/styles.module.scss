@@ -1,0 +1,56 @@
+/**
+ * Slider Component Styles
+ *
+ * AI Hint: This file contains all styles for the Slider component.
+ * Uses CSS Modules to avoid style conflicts.
+ *
+ * AI COLOR GUIDANCE:
+ * Use CSS variables from @global-styles/color.scss
+ * - var(--use-bg-tool-bg), var(--chart-rainbow-blue-100)
+ * DO NOT use hardcoded hex values - always use design token variables.
+ */
+
+.slider {
+  position: relative;
+  width: 100%;
+  padding: 10px 0; // Touch target vertical padding
+}
+
+.slider__track {
+  position: relative;
+  width: 100%;
+  height: 4px;
+  background: var(--use-bg-tool-bg);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.slider__track-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--chart-rainbow-blue-100);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+// Size variants (track only; thumb has own styles via data-size)
+.slider[data-size="small"] .slider__track {
+  height: 4px;
+}
+
+.slider[data-size="large"] .slider__track {
+  height: 6px;
+}
+
+// Disabled
+.slider[data-disabled="true"] {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+
+  .slider__track {
+    cursor: not-allowed;
+  }
+}

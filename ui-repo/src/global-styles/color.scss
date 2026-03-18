@@ -1,0 +1,369 @@
+/**
+ * Color Tokens from Figma
+ * Auto-generated from figma-tokens/color/*.tokens.json
+ */
+
+// Chart scope variables (light mode as default)
+:root, .light-mode {
+  --chart-black-alpha-0: rgba(0, 0, 0, 0);
+  --chart-black-alpha-0-hex: #FFFFFF;
+  --chart-black-alpha-10: rgba(0, 0, 0, 0.1);
+  --chart-black-alpha-10-hex: #E6E6E6;
+  --chart-black-alpha-100: #000000;
+  --chart-black-alpha-15: rgba(0, 0, 0, 0.15);
+  --chart-black-alpha-15-hex: #D9D9D9;
+  --chart-black-alpha-2: rgba(0, 0, 0, 0.02);
+  --chart-black-alpha-2-hex: #FAFAFA;
+  --chart-black-alpha-20: rgba(0, 0, 0, 0.2);
+  --chart-black-alpha-20-hex: #CCCCCC;
+  --chart-black-alpha-30: rgba(0, 0, 0, 0.3);
+  --chart-black-alpha-30-hex: #B3B3B3;
+  --chart-black-alpha-4: rgba(0, 0, 0, 0.04);
+  --chart-black-alpha-4-hex: #F5F5F5;
+  --chart-black-alpha-40: rgba(0, 0, 0, 0.4);
+  --chart-black-alpha-40-hex: #999999;
+  --chart-black-alpha-50: rgba(0, 0, 0, 0.5);
+  --chart-black-alpha-50-hex: #808080;
+  --chart-black-alpha-6: rgba(0, 0, 0, 0.06);
+  --chart-black-alpha-6-hex: #F0F0F0;
+  --chart-black-alpha-60: rgba(0, 0, 0, 0.6);
+  --chart-black-alpha-60-hex: #666666;
+  --chart-black-alpha-70: rgba(0, 0, 0, 0.7);
+  --chart-black-alpha-70-hex: #4D4D4D;
+  --chart-black-alpha-8: rgba(0, 0, 0, 0.08);
+  --chart-black-alpha-8-hex: #EBEBEB;
+  --chart-black-alpha-80: rgba(0, 0, 0, 0.8);
+  --chart-black-alpha-80-hex: #333333;
+  --chart-black-alpha-90: rgba(0, 0, 0, 0.9);
+  --chart-black-alpha-90-hex: #191919;
+  --chart-rainbow-blue-0: rgba(19, 100, 230, 0);
+  --chart-rainbow-blue-100: #1364E6;
+  --chart-rainbow-blue-20: rgba(19, 100, 230, 0.2);
+  --chart-rainbow-blue-40: rgba(19, 100, 230, 0.4);
+  --chart-rainbow-blue-60: rgba(19, 100, 230, 0.6);
+  --chart-rainbow-green-100: #22A55B;
+  --chart-rainbow-green-20: rgba(34, 165, 91, 0.2);
+  --chart-rainbow-green-20-2: rgba(34, 165, 91, 0);
+  --chart-rainbow-green-40: rgba(34, 165, 91, 0.4);
+  --chart-rainbow-green-60: rgba(34, 165, 91, 0.6);
+  --chart-rainbow-orange-0: rgba(225, 111, 36, 0);
+  --chart-rainbow-orange-100: #E16F24;
+  --chart-rainbow-orange-20: rgba(225, 111, 36, 0.2);
+  --chart-rainbow-orange-40: rgba(225, 111, 36, 0.4);
+  --chart-rainbow-orange-60: rgba(225, 111, 36, 0.6);
+  --chart-rainbow-pink-0: rgba(233, 96, 174, 0);
+  --chart-rainbow-pink-100: #E960AE;
+  --chart-rainbow-pink-20: rgba(233, 96, 174, 0.2);
+  --chart-rainbow-pink-40: rgba(233, 96, 174, 0.4);
+  --chart-rainbow-pink-60: rgba(233, 96, 174, 0.6);
+  --chart-rainbow-purple-0: rgba(130, 80, 223, 0);
+  --chart-rainbow-purple-100: #8250DF;
+  --chart-rainbow-purple-20: rgba(130, 80, 223, 0.2);
+  --chart-rainbow-purple-40: rgba(130, 80, 223, 0.4);
+  --chart-rainbow-purple-60: rgba(130, 80, 223, 0.6);
+  --chart-rainbow-red-0: rgba(255, 70, 70, 0);
+  --chart-rainbow-red-100: #FF4646;
+  --chart-rainbow-red-20: rgba(255, 70, 70, 0.2);
+  --chart-rainbow-red-40: rgba(255, 70, 70, 0.4);
+  --chart-rainbow-red-60: rgba(255, 70, 70, 0.6);
+  --chart-rainbow-yellow-0: rgba(214, 159, 24, 0);
+  --chart-rainbow-yellow-100: #D69F18;
+  --chart-rainbow-yellow-20: rgba(214, 159, 24, 0.2);
+  --chart-rainbow-yellow-40: rgba(214, 159, 24, 0.4);
+  --chart-rainbow-yellow-60: rgba(214, 159, 24, 0.6);
+}
+
+// Chart scope variables (dark mode override)
+:root[data-theme="dark"], .dark-mode {
+  --chart-black-alpha-0: rgba(255, 255, 255, 0);
+  --chart-black-alpha-0-hex: #000000;
+  --chart-black-alpha-10: rgba(255, 255, 255, 0.1);
+  --chart-black-alpha-10-hex: #1A1A1A;
+  --chart-black-alpha-100: #FFFFFF;
+  --chart-black-alpha-15: rgba(255, 255, 255, 0.15);
+  --chart-black-alpha-15-hex: #262626;
+  --chart-black-alpha-2: rgba(255, 255, 255, 0.02);
+  --chart-black-alpha-2-hex: #050505;
+  --chart-black-alpha-20: rgba(255, 255, 255, 0.2);
+  --chart-black-alpha-20-hex: #333333;
+  --chart-black-alpha-30: rgba(255, 255, 255, 0.3);
+  --chart-black-alpha-30-hex: #4D4D4D;
+  --chart-black-alpha-4: rgba(255, 255, 255, 0.04);
+  --chart-black-alpha-4-hex: #0A0A0A;
+  --chart-black-alpha-40: rgba(255, 255, 255, 0.4);
+  --chart-black-alpha-40-hex: #666666;
+  --chart-black-alpha-50: rgba(255, 255, 255, 0.5);
+  --chart-black-alpha-50-hex: #808080;
+  --chart-black-alpha-6: rgba(255, 255, 255, 0.06);
+  --chart-black-alpha-6-hex: #0F0F0F;
+  --chart-black-alpha-60: rgba(255, 255, 255, 0.6);
+  --chart-black-alpha-60-hex: #999999;
+  --chart-black-alpha-70: rgba(255, 255, 255, 0.7);
+  --chart-black-alpha-70-hex: #B3B3B3;
+  --chart-black-alpha-8: rgba(255, 255, 255, 0.08);
+  --chart-black-alpha-8-hex: #141414;
+  --chart-black-alpha-80: rgba(255, 255, 255, 0.8);
+  --chart-black-alpha-80-hex: #CCCCCC;
+  --chart-black-alpha-90: rgba(255, 255, 255, 0.9);
+  --chart-black-alpha-90-hex: #E6E6E6;
+  --chart-rainbow-blue-0: rgba(19, 100, 230, 0);
+  --chart-rainbow-blue-100: #1364E6;
+  --chart-rainbow-blue-20: rgba(19, 100, 230, 0.2);
+  --chart-rainbow-blue-40: rgba(19, 100, 230, 0.4);
+  --chart-rainbow-blue-60: rgba(19, 100, 230, 0.6);
+  --chart-rainbow-green-100: #22A55B;
+  --chart-rainbow-green-20: rgba(34, 165, 91, 0.2);
+  --chart-rainbow-green-20-2: rgba(34, 165, 91, 0);
+  --chart-rainbow-green-40: rgba(34, 165, 91, 0.4);
+  --chart-rainbow-green-60: rgba(34, 165, 91, 0.6);
+  --chart-rainbow-orange-0: rgba(225, 111, 36, 0);
+  --chart-rainbow-orange-100: #E16F24;
+  --chart-rainbow-orange-20: rgba(225, 111, 36, 0.2);
+  --chart-rainbow-orange-40: rgba(225, 111, 36, 0.4);
+  --chart-rainbow-orange-60: rgba(225, 111, 36, 0.6);
+  --chart-rainbow-pink-0: rgba(233, 96, 174, 0);
+  --chart-rainbow-pink-100: #E960AE;
+  --chart-rainbow-pink-20: rgba(233, 96, 174, 0.2);
+  --chart-rainbow-pink-40: rgba(233, 96, 174, 0.4);
+  --chart-rainbow-pink-60: rgba(233, 96, 174, 0.6);
+  --chart-rainbow-purple-0: rgba(130, 80, 223, 0);
+  --chart-rainbow-purple-100: #8250DF;
+  --chart-rainbow-purple-20: rgba(130, 80, 223, 0.2);
+  --chart-rainbow-purple-40: rgba(130, 80, 223, 0.4);
+  --chart-rainbow-purple-60: rgba(130, 80, 223, 0.6);
+  --chart-rainbow-red-0: rgba(255, 70, 70, 0);
+  --chart-rainbow-red-100: #FF4646;
+  --chart-rainbow-red-20: rgba(255, 70, 70, 0.2);
+  --chart-rainbow-red-40: rgba(255, 70, 70, 0.4);
+  --chart-rainbow-red-60: rgba(255, 70, 70, 0.6);
+  --chart-rainbow-yellow-0: rgba(214, 159, 24, 0);
+  --chart-rainbow-yellow-100: #D69F18;
+  --chart-rainbow-yellow-20: rgba(214, 159, 24, 0.2);
+  --chart-rainbow-yellow-40: rgba(214, 159, 24, 0.4);
+  --chart-rainbow-yellow-60: rgba(214, 159, 24, 0.6);
+}
+
+// System theme detection (light mode)
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    --chart-black-alpha-0: rgba(0, 0, 0, 0);
+    --chart-black-alpha-0-hex: #FFFFFF;
+    --chart-black-alpha-10: rgba(0, 0, 0, 0.1);
+    --chart-black-alpha-10-hex: #E6E6E6;
+    --chart-black-alpha-100: #000000;
+    --chart-black-alpha-15: rgba(0, 0, 0, 0.15);
+    --chart-black-alpha-15-hex: #D9D9D9;
+    --chart-black-alpha-2: rgba(0, 0, 0, 0.02);
+    --chart-black-alpha-2-hex: #FAFAFA;
+    --chart-black-alpha-20: rgba(0, 0, 0, 0.2);
+    --chart-black-alpha-20-hex: #CCCCCC;
+    --chart-black-alpha-30: rgba(0, 0, 0, 0.3);
+    --chart-black-alpha-30-hex: #B3B3B3;
+    --chart-black-alpha-4: rgba(0, 0, 0, 0.04);
+    --chart-black-alpha-4-hex: #F5F5F5;
+    --chart-black-alpha-40: rgba(0, 0, 0, 0.4);
+    --chart-black-alpha-40-hex: #999999;
+    --chart-black-alpha-50: rgba(0, 0, 0, 0.5);
+    --chart-black-alpha-50-hex: #808080;
+    --chart-black-alpha-6: rgba(0, 0, 0, 0.06);
+    --chart-black-alpha-6-hex: #F0F0F0;
+    --chart-black-alpha-60: rgba(0, 0, 0, 0.6);
+    --chart-black-alpha-60-hex: #666666;
+    --chart-black-alpha-70: rgba(0, 0, 0, 0.7);
+    --chart-black-alpha-70-hex: #4D4D4D;
+    --chart-black-alpha-8: rgba(0, 0, 0, 0.08);
+    --chart-black-alpha-8-hex: #EBEBEB;
+    --chart-black-alpha-80: rgba(0, 0, 0, 0.8);
+    --chart-black-alpha-80-hex: #333333;
+    --chart-black-alpha-90: rgba(0, 0, 0, 0.9);
+    --chart-black-alpha-90-hex: #191919;
+    --chart-rainbow-blue-0: rgba(19, 100, 230, 0);
+    --chart-rainbow-blue-100: #1364E6;
+    --chart-rainbow-blue-20: rgba(19, 100, 230, 0.2);
+    --chart-rainbow-blue-40: rgba(19, 100, 230, 0.4);
+    --chart-rainbow-blue-60: rgba(19, 100, 230, 0.6);
+    --chart-rainbow-green-100: #22A55B;
+    --chart-rainbow-green-20: rgba(34, 165, 91, 0.2);
+    --chart-rainbow-green-20-2: rgba(34, 165, 91, 0);
+    --chart-rainbow-green-40: rgba(34, 165, 91, 0.4);
+    --chart-rainbow-green-60: rgba(34, 165, 91, 0.6);
+    --chart-rainbow-orange-0: rgba(225, 111, 36, 0);
+    --chart-rainbow-orange-100: #E16F24;
+    --chart-rainbow-orange-20: rgba(225, 111, 36, 0.2);
+    --chart-rainbow-orange-40: rgba(225, 111, 36, 0.4);
+    --chart-rainbow-orange-60: rgba(225, 111, 36, 0.6);
+    --chart-rainbow-pink-0: rgba(233, 96, 174, 0);
+    --chart-rainbow-pink-100: #E960AE;
+    --chart-rainbow-pink-20: rgba(233, 96, 174, 0.2);
+    --chart-rainbow-pink-40: rgba(233, 96, 174, 0.4);
+    --chart-rainbow-pink-60: rgba(233, 96, 174, 0.6);
+    --chart-rainbow-purple-0: rgba(130, 80, 223, 0);
+    --chart-rainbow-purple-100: #8250DF;
+    --chart-rainbow-purple-20: rgba(130, 80, 223, 0.2);
+    --chart-rainbow-purple-40: rgba(130, 80, 223, 0.4);
+    --chart-rainbow-purple-60: rgba(130, 80, 223, 0.6);
+    --chart-rainbow-red-0: rgba(255, 70, 70, 0);
+    --chart-rainbow-red-100: #FF4646;
+    --chart-rainbow-red-20: rgba(255, 70, 70, 0.2);
+    --chart-rainbow-red-40: rgba(255, 70, 70, 0.4);
+    --chart-rainbow-red-60: rgba(255, 70, 70, 0.6);
+    --chart-rainbow-yellow-0: rgba(214, 159, 24, 0);
+    --chart-rainbow-yellow-100: #D69F18;
+    --chart-rainbow-yellow-20: rgba(214, 159, 24, 0.2);
+    --chart-rainbow-yellow-40: rgba(214, 159, 24, 0.4);
+    --chart-rainbow-yellow-60: rgba(214, 159, 24, 0.6);
+  }
+}
+
+// System theme detection (dark mode)
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --chart-black-alpha-0: rgba(255, 255, 255, 0);
+    --chart-black-alpha-0-hex: #000000;
+    --chart-black-alpha-10: rgba(255, 255, 255, 0.1);
+    --chart-black-alpha-10-hex: #1A1A1A;
+    --chart-black-alpha-100: #FFFFFF;
+    --chart-black-alpha-15: rgba(255, 255, 255, 0.15);
+    --chart-black-alpha-15-hex: #262626;
+    --chart-black-alpha-2: rgba(255, 255, 255, 0.02);
+    --chart-black-alpha-2-hex: #050505;
+    --chart-black-alpha-20: rgba(255, 255, 255, 0.2);
+    --chart-black-alpha-20-hex: #333333;
+    --chart-black-alpha-30: rgba(255, 255, 255, 0.3);
+    --chart-black-alpha-30-hex: #4D4D4D;
+    --chart-black-alpha-4: rgba(255, 255, 255, 0.04);
+    --chart-black-alpha-4-hex: #0A0A0A;
+    --chart-black-alpha-40: rgba(255, 255, 255, 0.4);
+    --chart-black-alpha-40-hex: #666666;
+    --chart-black-alpha-50: rgba(255, 255, 255, 0.5);
+    --chart-black-alpha-50-hex: #808080;
+    --chart-black-alpha-6: rgba(255, 255, 255, 0.06);
+    --chart-black-alpha-6-hex: #0F0F0F;
+    --chart-black-alpha-60: rgba(255, 255, 255, 0.6);
+    --chart-black-alpha-60-hex: #999999;
+    --chart-black-alpha-70: rgba(255, 255, 255, 0.7);
+    --chart-black-alpha-70-hex: #B3B3B3;
+    --chart-black-alpha-8: rgba(255, 255, 255, 0.08);
+    --chart-black-alpha-8-hex: #141414;
+    --chart-black-alpha-80: rgba(255, 255, 255, 0.8);
+    --chart-black-alpha-80-hex: #CCCCCC;
+    --chart-black-alpha-90: rgba(255, 255, 255, 0.9);
+    --chart-black-alpha-90-hex: #E6E6E6;
+    --chart-rainbow-blue-0: rgba(19, 100, 230, 0);
+    --chart-rainbow-blue-100: #1364E6;
+    --chart-rainbow-blue-20: rgba(19, 100, 230, 0.2);
+    --chart-rainbow-blue-40: rgba(19, 100, 230, 0.4);
+    --chart-rainbow-blue-60: rgba(19, 100, 230, 0.6);
+    --chart-rainbow-green-100: #22A55B;
+    --chart-rainbow-green-20: rgba(34, 165, 91, 0.2);
+    --chart-rainbow-green-20-2: rgba(34, 165, 91, 0);
+    --chart-rainbow-green-40: rgba(34, 165, 91, 0.4);
+    --chart-rainbow-green-60: rgba(34, 165, 91, 0.6);
+    --chart-rainbow-orange-0: rgba(225, 111, 36, 0);
+    --chart-rainbow-orange-100: #E16F24;
+    --chart-rainbow-orange-20: rgba(225, 111, 36, 0.2);
+    --chart-rainbow-orange-40: rgba(225, 111, 36, 0.4);
+    --chart-rainbow-orange-60: rgba(225, 111, 36, 0.6);
+    --chart-rainbow-pink-0: rgba(233, 96, 174, 0);
+    --chart-rainbow-pink-100: #E960AE;
+    --chart-rainbow-pink-20: rgba(233, 96, 174, 0.2);
+    --chart-rainbow-pink-40: rgba(233, 96, 174, 0.4);
+    --chart-rainbow-pink-60: rgba(233, 96, 174, 0.6);
+    --chart-rainbow-purple-0: rgba(130, 80, 223, 0);
+    --chart-rainbow-purple-100: #8250DF;
+    --chart-rainbow-purple-20: rgba(130, 80, 223, 0.2);
+    --chart-rainbow-purple-40: rgba(130, 80, 223, 0.4);
+    --chart-rainbow-purple-60: rgba(130, 80, 223, 0.6);
+    --chart-rainbow-red-0: rgba(255, 70, 70, 0);
+    --chart-rainbow-red-100: #FF4646;
+    --chart-rainbow-red-20: rgba(255, 70, 70, 0.2);
+    --chart-rainbow-red-40: rgba(255, 70, 70, 0.4);
+    --chart-rainbow-red-60: rgba(255, 70, 70, 0.6);
+    --chart-rainbow-yellow-0: rgba(214, 159, 24, 0);
+    --chart-rainbow-yellow-100: #D69F18;
+    --chart-rainbow-yellow-20: rgba(214, 159, 24, 0.2);
+    --chart-rainbow-yellow-40: rgba(214, 159, 24, 0.4);
+    --chart-rainbow-yellow-60: rgba(214, 159, 24, 0.6);
+  }
+}
+
+// Use scope variables (reference chart scope)
+:root {
+  // "bg" sub-scope
+  --use-bg-navigation-bg: var(--chart-black-alpha-2-hex);
+  --use-bg-prime: var(--chart-black-alpha-0-hex);
+  --use-bg-secondary: var(--chart-black-alpha-4-hex);
+  --use-bg-secondary-trans: var(--chart-black-alpha-4);
+  --use-bg-tool-bg: var(--chart-black-alpha-10-hex);
+  --use-bg-tool-bg-secondary: var(--chart-black-alpha-10);
+
+  // "border" sub-scope
+  --use-border-darken: var(--chart-black-alpha-8-hex);
+  --use-border-darken-trans: var(--chart-black-alpha-8);
+  --use-border-prime: var(--chart-black-alpha-6-hex);
+  --use-border-prime-trans: var(--chart-black-alpha-6);
+
+  // "hover" sub-scope
+  --use-hover-box-hover: var(--chart-black-alpha-4);
+  --use-hover-box-mouse-down: var(--chart-black-alpha-6);
+
+  // "icon" sub-scope
+  --use-icon-emph: var(--chart-black-alpha-100);
+  --use-icon-negative: var(--chart-black-alpha-15-hex);
+  --use-icon-negative-trans: var(--chart-black-alpha-15);
+  --use-icon-prime: var(--chart-black-alpha-70-hex);
+  --use-icon-prime-trans: var(--chart-black-alpha-70);
+  --use-icon-secondary: var(--chart-black-alpha-30-hex);
+  --use-icon-secondary-trans: var(--chart-black-alpha-30);
+
+  // "shadow" sub-scope
+  --use-shadow-popup-default: rgba(0, 0, 0, 0.16);
+  --use-shadow-popup-hover: rgba(0, 0, 0, 0.24);
+  --use-shadow-popup-mouse-down: rgba(0, 0, 0, 0.2);
+
+  // "text" sub-scope
+  --use-text-emph: var(--chart-black-alpha-100);
+  --use-text-negative: var(--chart-black-alpha-20-hex);
+  --use-text-negative-trans: var(--chart-black-alpha-20);
+  --use-text-prime: var(--chart-black-alpha-80-hex);
+  --use-text-prime-trans: var(--chart-black-alpha-80);
+  --use-text-secondary: var(--chart-black-alpha-40-hex);
+  --use-text-secondary-trans: var(--chart-black-alpha-40);
+
+}
+
+// Use scope variables (dark mode override)
+:root[data-theme="dark"], .dark-mode {
+  --use-bg-navigation-bg: var(--chart-black-alpha-4-hex);
+  --use-bg-prime: var(--chart-black-alpha-6-hex);
+  --use-bg-secondary: var(--chart-black-alpha-8-hex);
+  --use-bg-secondary-trans: var(--chart-black-alpha-8-hex);
+  --use-border-darken: var(--chart-black-alpha-15-hex);
+  --use-border-darken-trans: var(--chart-black-alpha-15);
+  --use-border-prime: var(--chart-black-alpha-10-hex);
+  --use-border-prime-trans: var(--chart-black-alpha-10);
+  --use-hover-box-hover: var(--chart-black-alpha-6);
+  --use-hover-box-mouse-down: var(--chart-black-alpha-4);
+  --use-shadow-popup-default: rgba(0, 0, 0, 0.48);
+  --use-shadow-popup-hover: rgba(0, 0, 0, 0.56);
+  --use-shadow-popup-mouse-down: rgba(0, 0, 0, 0.52);
+}
+
+// Use scope variables (system theme detection - dark mode)
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --use-bg-navigation-bg: var(--chart-black-alpha-4-hex);
+    --use-bg-prime: var(--chart-black-alpha-6-hex);
+    --use-bg-secondary: var(--chart-black-alpha-8-hex);
+    --use-bg-secondary-trans: var(--chart-black-alpha-8-hex);
+    --use-border-darken: var(--chart-black-alpha-15-hex);
+    --use-border-darken-trans: var(--chart-black-alpha-15);
+    --use-border-prime: var(--chart-black-alpha-10-hex);
+    --use-border-prime-trans: var(--chart-black-alpha-10);
+    --use-hover-box-hover: var(--chart-black-alpha-6);
+    --use-hover-box-mouse-down: var(--chart-black-alpha-4);
+    --use-shadow-popup-default: rgba(0, 0, 0, 0.48);
+    --use-shadow-popup-hover: rgba(0, 0, 0, 0.56);
+    --use-shadow-popup-mouse-down: rgba(0, 0, 0, 0.52);
+  }
+}

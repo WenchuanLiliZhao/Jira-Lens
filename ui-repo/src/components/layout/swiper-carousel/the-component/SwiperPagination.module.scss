@@ -1,0 +1,149 @@
+/**
+ * SwiperPagination Component Styles
+ * 
+ * AI Hint: This file contains all styles for the SwiperPagination component.
+ * Uses CSS Modules to avoid style conflicts.
+ *
+ * AI COLOR GUIDANCE:
+ * Use CSS variables from @global-styles/color.scss
+ * - Semantic colors: var(--use-text-prime), var(--use-bg-prime), var(--use-border-prime)
+ * - Chart colors: var(--chart-rainbow-blue-100), var(--chart-black-alpha-40-hex)
+ * DO NOT use hardcoded hex values - always use design token variables.
+ */
+
+.swiper-pagination-wrapper {
+  position: absolute;
+  z-index: 10;
+}
+
+/* Horizontal Direction - Pagination at bottom */
+.swiper-pagination-wrapper-horizontal {
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+}
+
+/* Vertical Direction - Pagination on right side */
+.swiper-pagination-wrapper-vertical {
+  right: 10px;
+  left: auto;
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%);
+  width: auto;
+}
+
+/* Pagination Container */
+.swiper-pagination {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Horizontal: bullets arranged horizontally */
+.swiper-pagination-wrapper-horizontal .swiper-pagination {
+  flex-direction: row;
+  gap: 4px;
+}
+
+/* Vertical: bullets arranged vertically */
+.swiper-pagination-wrapper-vertical .swiper-pagination {
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Bullets Pagination */
+:global(.swiper-pagination-bullet) {
+  width: 8px;
+  height: 8px;
+  background: var(--use-icon-prime);
+  opacity: 0.4;
+  margin: 0;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border-radius: 50%;
+  display: inline-block;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+:global(.swiper-pagination-bullet-active) {
+  opacity: 1;
+  background: var(--use-icon-emph);
+  width: 24px;
+  border-radius: 4px;
+}
+
+/* Vertical bullets: keep circular shape */
+.swiper-pagination-wrapper-vertical :global(.swiper-pagination-bullet-active) {
+  width: 8px;
+  height: 24px;
+  border-radius: 4px;
+}
+
+/* Fraction Pagination */
+:global(.swiper-pagination-fraction) {
+  color: var(--use-text-prime);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Horizontal fraction: normal text */
+.swiper-pagination-wrapper-horizontal :global(.swiper-pagination-fraction) {
+  text-align: center;
+}
+
+/* Vertical fraction: rotated text */
+.swiper-pagination-wrapper-vertical :global(.swiper-pagination-fraction) {
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+}
+
+/* Progressbar Pagination */
+:global(.swiper-pagination-progressbar) {
+  background: var(--use-bg-secondary);
+  position: relative;
+}
+
+/* Horizontal progressbar: at bottom */
+.swiper-pagination-wrapper-horizontal :global(.swiper-pagination-progressbar) {
+  width: 100%;
+  height: 4px;
+  bottom: 0;
+  left: 0;
+  top: auto;
+}
+
+/* Vertical progressbar: on right side */
+.swiper-pagination-wrapper-vertical :global(.swiper-pagination-progressbar) {
+  width: 4px;
+  height: 100%;
+  right: 0;
+  top: 0;
+  left: auto;
+  bottom: auto;
+}
+
+:global(.swiper-pagination-progressbar-fill) {
+  background: var(--use-icon-emph);
+}
+
+/* Horizontal progressbar fill */
+.swiper-pagination-wrapper-horizontal :global(.swiper-pagination-progressbar-fill) {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+/* Vertical progressbar fill */
+.swiper-pagination-wrapper-vertical :global(.swiper-pagination-progressbar-fill) {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}

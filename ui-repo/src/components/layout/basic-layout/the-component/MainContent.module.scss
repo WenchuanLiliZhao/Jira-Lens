@@ -1,0 +1,38 @@
+/**
+ * BasicLayout.MainContent Component Styles
+ *
+ * AI Hint: This file contains styles for the MainContent subcomponent.
+ * Uses CSS Modules to avoid style conflicts.
+ *
+ * AI COLOR GUIDANCE:
+ * Use CSS variables from @global-styles/color.scss
+ * - Semantic colors: var(--use-text-prime), var(--use-bg-prime), var(--use-border-prime)
+ * - Chart colors: var(--chart-rainbow-blue-100), var(--chart-black-alpha-40-hex)
+ * DO NOT use hardcoded hex values - always use design token variables.
+ */
+
+.main-content {
+  // Fill the remaining space
+  flex: 1;
+  min-width: 0; // Allow flex child to shrink below content size
+  height: 100%;
+  background-color: var(--use-bg-prime);
+  overflow-y: auto;
+
+  &.full-bleed {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    > * {
+      flex: 1;
+      min-height: 0;
+    }
+  }
+
+  .main-content-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+}

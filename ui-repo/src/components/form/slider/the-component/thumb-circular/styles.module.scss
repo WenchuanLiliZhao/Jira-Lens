@@ -1,0 +1,59 @@
+/**
+ * Slider ThumbCircular Styles
+ *
+ * AI Hint: Circular thumb variant for Slider. Uses data-size and data-disabled
+ * for self-styling. WCAG 2.1 AAA: min 44px touch target.
+ *
+ * AI COLOR GUIDANCE:
+ * Use CSS variables from @global-styles/color.scss
+ * - var(--chart-black-alpha-0-hex), var(--use-border-prime), var(--chart-rainbow-blue-100)
+ * DO NOT use hardcoded hex values.
+ */
+
+.thumb {
+  position: absolute;
+  top: 50%;
+  width: 24px;
+  height: 24px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 10px;
+  margin-top: -22px; // Center vertically (44/2)
+  box-sizing: border-box;
+  background: var(--chart-black-alpha-0-hex);
+  border: 1px solid var(--use-border-prime);
+  border-radius: 50%;
+  box-shadow: 0 1px 3px var(--use-shadow-popup-default);
+  cursor: pointer;
+  touch-action: none;
+  transition: box-shadow 120ms ease;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--chart-rainbow-blue-100);
+    outline-offset: 2px;
+  }
+}
+
+// Size variants (thumb self-styles via data-size)
+.thumb[data-size="small"] {
+  width: 20px;
+  height: 20px;
+  padding: 12px;
+  margin-top: -22px;
+}
+
+.thumb[data-size="large"] {
+  width: 28px;
+  height: 28px;
+  padding: 8px;
+  margin-top: -22px;
+}
+
+// Disabled
+.thumb[data-disabled="true"] {
+  cursor: not-allowed;
+}

@@ -1,0 +1,7 @@
+# Calendar Component - AI Judgment Summary
+
+| Decision           | Choice             | Rationale                                                                                                                                                                                                                                                                      |
+| ------------------ | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Category**       | `form`             | Calendar is used for date selection in forms (Date Picker, Date Range Picker). Aligns with existing [form/date-range-picker](../date-range-picker).                                                                                                   |
+| **Component Name** | `Calendar`         | Material Design uses "Calendar" as the reusable component; "Date Picker Calendar" is the usage context.                                                                                                                                                                        |
+| **Plan**           | **B** (Multi-file) | Month grid, header, navigation, selection logic, disabled dates, i18n — easily exceeds 300 lines. Same as [form/date-range-picker](../date-range-picker) and [data-visualization/combo-chart](../../data-visualization/combo-chart). |

@@ -1,0 +1,53 @@
+/**
+ * DataTable Group Header Styles
+ * 
+ * Independent styles for table group header component
+ */
+
+// ============================================================
+// Group header row
+// DOM: tr.data-table__group-header > td.data-table__group-header-cell
+// ============================================================
+
+.data-table__group-header {
+  background-color: var(--use-bg-secondary);
+  cursor: pointer;
+  user-select: none;
+  border-bottom: 1px solid var(--use-border-prime);
+
+  &:not(:first-child) {
+    border-top: 1px solid var(--use-border-prime);
+  }
+
+  .data-table__group-header-cell {
+    padding: var(--dt-cell-pad-v) var(--dt-cell-pad-h);
+
+    // DOM: div.data-table__group-header-content
+    .data-table__group-header-content {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      color: var(--use-text-secondary);
+
+      .data-table__group-icon {
+        color: var(--use-text-secondary);
+        transition: transform 0.2s ease;
+      }
+
+      .data-table__group-label-icon {
+        color: var(--use-text-secondary);
+      }
+
+      .data-table__group-label {
+        flex: 0 0 auto;
+      }
+
+      // Group row count
+      .data-table__group-count {
+        color: var(--use-text-secondary);
+        font-weight: normal;
+      }
+    }
+  }
+}

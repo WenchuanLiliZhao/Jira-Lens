@@ -1,0 +1,38 @@
+/**
+ * HoverOverlay Component Styles
+ * 
+ * A reusable overlay component that provides consistent hover and active states
+ * for interactive elements using currentColor and opacity.
+ */
+
+.hover-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: currentColor;
+  border-radius: inherit;
+  opacity: 0;
+  pointer-events: none; // prevent event from being intercepted by the overlay
+  transition: opacity 120ms ease;
+  
+  // Use CSS variables for custom opacity values
+  // Default values: hover 0.06, active 0.12
+  --hover-opacity: 0.08;
+  --active-opacity: 0.16;
+  
+  // Parent element hover state
+  // Using :has() selector to detect parent hover
+  // Fallback: parent should add hover class
+  :hover > &,
+  .hover-overlay-parent:hover > & {
+    opacity: var(--hover-opacity);
+  }
+  
+  // Parent element active state
+  :active > &,
+  .hover-overlay-parent:active > & {
+    opacity: var(--active-opacity);
+  }
+}

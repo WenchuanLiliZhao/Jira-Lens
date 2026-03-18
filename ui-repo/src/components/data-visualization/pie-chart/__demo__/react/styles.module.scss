@@ -1,0 +1,101 @@
+/**
+ * PieChart Demo Page Styles
+ * 
+ * Uses CSS variables from the global color system (color.scss).
+ * @see ui-repo/src/global-styles/color.scss
+ */
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--use-text-prime, var(--chart-black-alpha-90-hex));
+}
+
+.section {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--use-border-prime, var(--chart-black-alpha-15-hex));
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--use-text-prime, var(--chart-black-alpha-90-hex));
+}
+
+.description {
+  font-size: 0.875rem;
+  color: var(--use-text-secondary, var(--chart-black-alpha-40-hex));
+  margin-bottom: 1.5rem;
+}
+
+.demo-box {
+  background: var(--use-bg-prime, var(--chart-black-alpha-0-hex));
+  border: 1px solid var(--use-border-prime, var(--chart-black-alpha-15-hex));
+  border-radius: 8px;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+.demo-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.demo-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: var(--use-bg-prime, var(--chart-black-alpha-0-hex));
+  border: 1px solid var(--use-border-prime, var(--chart-black-alpha-15-hex));
+  border-radius: 8px;
+  min-width: 180px;
+}
+
+.label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--use-text-secondary, var(--chart-black-alpha-40-hex));
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.interaction-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  background: var(--use-bg-secondary, var(--chart-black-alpha-2-hex));
+  border-radius: 8px;
+  min-width: 200px;
+}
+
+.info-item {
+  font-size: 0.875rem;
+  color: var(--use-text-prime, var(--chart-black-alpha-90-hex));
+
+  strong {
+    color: var(--use-text-secondary, var(--chart-black-alpha-40-hex));
+    margin-right: 0.5rem;
+  }
+}

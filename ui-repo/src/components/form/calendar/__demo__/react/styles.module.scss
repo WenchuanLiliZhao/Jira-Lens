@@ -1,0 +1,39 @@
+/**
+ * Calendar Demo Page Styles
+ *
+ * AI COLOR GUIDANCE:
+ * Use CSS variables from @global-styles/color.scss
+ * - Semantic colors: var(--use-text-prime), var(--use-bg-prime), var(--use-border-prime)
+ * - Chart colors: var(--chart-rainbow-blue-100), var(--chart-black-alpha-40-hex)
+ * DO NOT use hardcoded hex values - always use design token variables.
+ */
+
+.component-demo-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: var(--use-text-prime);
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+    color: var(--use-text-prime);
+  }
+
+  p {
+    margin-bottom: 16px;
+    color: var(--use-text-secondary);
+  }
+}
+
+.component-demo-section {
+  margin-bottom: 48px;
+  padding: 24px;
+  background-color: var(--use-bg-secondary);
+  border-radius: 8px;
+}

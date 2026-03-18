@@ -1,0 +1,274 @@
+/**
+ * DistributionBar Component Styles
+ *
+ * ========== DESIGN TOKENS (调试用) ==========
+ * 
+ * SIZE TOKENS → 已移至 constants.ts，通过 inline style 注入:
+ *   HEIGHT_PRESETS: sm=8px, md=16px, lg=24px
+ *   DEFAULT_DESIGN.borderRadius: 4px
+ *   DEFAULT_DESIGN.gap: 1px
+ *   DEFAULT_DESIGN.legendGap: 12px
+ *   TYPOGRAPHY.labelFontSize: 10px
+ *   TYPOGRAPHY.legendDotSize: 10px
+ * 
+ * ANIMATION TOKENS (保留在 SCSS，用于 transition):
+ *   --distribution-bar-animation-duration: 300ms
+ *   --distribution-bar-animation-easing: ease-out
+ * 
+ * COLOR TOKENS (保留在 SCSS):
+ *   --distribution-bar-text: var(--use-text-prime)
+ *   --distribution-bar-text-secondary: var(--use-text-secondary)
+ *   --distribution-bar-text-muted: var(--use-text-secondary-trans)
+ *   --distribution-bar-border: var(--use-border-prime)
+ *   --distribution-bar-tooltip-bg: var(--use-bg-prime)
+ *   --distribution-bar-tooltip-shadow: var(--use-shadow-popup-default)
+ * ============================================
+ */
+
+/* -------------------------------------------------------------------------- */
+/*                             CSS Variables                                  */
+/* -------------------------------------------------------------------------- */
+
+:root {
+  // Animation (用于 transition，需保留在 SCSS)
+  --distribution-bar-animation-duration: 300ms;
+  --distribution-bar-animation-easing: ease-out;
+
+  // Font
+  --distribution-bar-font-family: var(
+    --font-family-sans,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    "Noto Sans",
+    sans-serif
+  );
+
+  // Colors from global color system
+  --distribution-bar-text: var(--use-text-prime, var(--chart-black-alpha-90-hex));
+  --distribution-bar-text-secondary: var(
+    --use-text-secondary,
+    var(--chart-black-alpha-40-hex)
+  );
+  --distribution-bar-text-muted: var(
+    --use-text-secondary-trans,
+    var(--chart-black-alpha-40)
+  );
+  --distribution-bar-border: var(--use-border-prime, var(--chart-black-alpha-15-hex));
+  --distribution-bar-tooltip-bg: var(--use-bg-prime, var(--chart-black-alpha-0-hex));
+  --distribution-bar-tooltip-shadow: var(
+    --use-shadow-popup-default,
+    0 4px 12px rgba(0, 0, 0, 0.15)
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*                             Container Styles                               */
+/* -------------------------------------------------------------------------- */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-family: var(--distribution-bar-font-family);
+
+  &--empty {
+    justify-content: center;
+    align-items: center;
+    min-height: 60px;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                               Bar Styles                                   */
+/* -------------------------------------------------------------------------- */
+
+.bar {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  // background: var(--distribution-bar-border);
+}
+
+/* -------------------------------------------------------------------------- */
+/*                             Segment Styles                                 */
+/* -------------------------------------------------------------------------- */
+
+.segment {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  flex-shrink: 0;
+  transition:
+    flex-grow var(--distribution-bar-animation-duration)
+      var(--distribution-bar-animation-easing),
+    opacity 150ms ease;
+
+  &--interactive {
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.85;
+    }
+
+    &:active {
+      opacity: 0.75;
+    }
+  }
+
+  &--hovered {
+    z-index: 1;
+  }
+}
+
+.segment-label {
+  color: white;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                             Tooltip Styles                                 */
+/* -------------------------------------------------------------------------- */
+
+.tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  background: var(--distribution-bar-tooltip-bg);
+  border: 1px solid var(--distribution-bar-border);
+  border-radius: 6px;
+  padding: 8px 12px;
+  box-shadow: var(--distribution-bar-tooltip-shadow);
+  white-space: nowrap;
+  pointer-events: none;
+
+  // Arrow
+  &::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: var(--distribution-bar-tooltip-bg);
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 7px solid transparent;
+    border-top-color: var(--distribution-bar-border);
+  }
+}
+
+.tooltip-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tooltip-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tooltip-color {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.tooltip-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--distribution-bar-text-secondary);
+}
+
+.tooltip-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--distribution-bar-text);
+}
+
+.tooltip-percentage {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--distribution-bar-text-muted);
+  margin-left: 4px;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                             Legend Styles                                  */
+/* -------------------------------------------------------------------------- */
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  line-height: 20px;
+  color: var(--distribution-bar-text-secondary);
+  cursor: default;
+  transition: opacity 150ms ease;
+
+  &--highlighted {
+    .legend-text,
+    .legend-value {
+      color: var(--distribution-bar-text);
+    }
+  }
+}
+
+.legend-dot {
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.legend-text {
+  color: var(--distribution-bar-text-secondary);
+}
+
+.legend-value {
+  color: var(--distribution-bar-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                             Empty State                                    */
+/* -------------------------------------------------------------------------- */
+
+.empty-message {
+  font-size: 14px;
+  color: var(--distribution-bar-text-muted);
+  text-align: center;
+}

@@ -1,0 +1,290 @@
+/**
+ * Button Component Styles
+ * 
+ * AI Hint: This file contains all styles for the Button component.
+ * Uses CSS Modules to avoid style conflicts.
+ */
+
+// ============ COMPONENT STYLES ============
+// No mixins - all styles written directly in classes for better readability
+
+.button {
+  // Size tokens (default: medium; overridden by --size-* modifiers)
+  --button-text-font-size: 14px;
+  --button-text-line-height: 22px;
+  --button-icon-size: 18px;
+  --button-icon-height: 22px;
+  --button-padding: 5px 9px;
+  --button-gap: 2px;
+  --button-border-radius: 4px;
+  --button-icon-v-padding: calc((var(--button-text-line-height) - var(--button-icon-height)) / 2);
+
+  // Base styles
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  border: none;
+  font-family: inherit;
+  letter-spacing: 0.02857em;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  vertical-align: middle;
+    
+  color: var(--use-text-prime);
+  background-color: inherit;
+  padding: var(--button-padding);
+  gap: var(--button-gap);
+  border-radius: var(--button-border-radius);
+  
+  &:focus-visible {
+    outline: none;
+  }
+
+  // universal & conditional elements styles
+  & {
+    // universal elements styles
+    .icon-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: var(--button-icon-height);
+      font-size: var(--button-icon-size);
+
+      .icon {
+        display: flex;
+        line-height: 1;
+      }
+    }
+
+    &__label {
+      width: auto;
+      display: inherit;
+      align-items: inherit;
+      justify-content: inherit;
+      padding: 0 2px;
+      font-size: var(--button-text-font-size);
+      line-height: var(--button-text-line-height);
+    }
+
+    // conditional elements styles
+    .outline-border {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      border: 1px solid currentColor;
+      border-radius: inherit;
+      pointer-events: none; // prevent event from being intercepted by the overlay
+    }
+  }
+
+  // Size modifiers (override CSS vars; children use var())
+  &--size {
+    &-small {
+      --button-text-font-size: 12px;
+      --button-text-line-height: 20px;
+      --button-icon-size: 14px;
+      --button-icon-height: 20px;
+      --button-padding: 1px 4px;
+      --button-gap: 1px;
+    }
+
+    &-medium {
+      // Uses default vars
+    }
+
+    &-large {
+      --button-text-font-size: 16px;
+      --button-text-line-height: 24px;
+      --button-icon-size: 20px;
+      --button-icon-height: 24px;
+      --button-padding: 8px 12px;
+    }
+  }
+
+  // Color modifiers for each variant (done)
+  &--color {
+    &-default {
+      // Ghost variant
+      &.button--variant-ghost {
+        color: var(--use-text-prime);
+        .icon-container {
+          color: var(--use-icon-prime);
+        }
+      }
+
+      // Contained variant
+      &.button--variant-contained {
+        color: var(--use-text-prime);
+        background-color: var(--chart-black-alpha-15-hex);
+
+        .icon-container {
+          color: var(--use-icon-prime);
+        }
+      }
+
+      // Outlined variant (when .outline-border is rendered)
+      &.button--variant-outlined {
+        color: var(--use-text-emph);
+
+        .icon-container {
+          color: var(--use-icon-prime);
+        }
+
+        .outline-border {
+          color: var(--use-border-prime);
+        }
+      }
+    }
+
+    &-primary {
+      // Text variant
+      &.button--variant-ghost {
+        color: var(--chart-rainbow-blue-100);
+      }
+
+      // Contained variant
+      &.button--variant-contained {
+        color: white;
+        background-color: var(--chart-rainbow-blue-100);
+      }
+
+      // Outlined variant
+      &.button--variant-outlined {
+        color: var(--chart-rainbow-blue-100);
+
+        .outline-border {
+          color: var(--chart-rainbow-blue-40);
+        }
+      }
+    }
+
+    &-secondary {
+      // Ghost variant
+      &.button--variant-ghost {
+        color: var(--use-text-secondary);
+      }
+
+      // Contained variant
+      &.button--variant-contained {
+        color: var(--use-text-secondary);
+        background-color: var(--chart-black-alpha-15-hex);
+      }
+
+      // Outlined variant
+      &.button--variant-outlined {
+        color: var(--use-text-secondary);
+        border-color: var(--chart-black-alpha-30-hex);
+
+        .outline-border {
+          color: var(--use-border-prime);
+        }
+      }
+    }
+
+    &-success {
+      // Text variant
+      &.button--variant-ghost {
+        color: var(--chart-rainbow-green-100);
+      }
+
+      // Contained variant
+      &.button--variant-contained {
+        color: white;
+        background-color: var(--chart-rainbow-green-100);
+      }
+
+      // Outlined variant
+      &.button--variant-outlined {
+        color: var(--chart-rainbow-green-100);
+
+        .outline-border {
+          color: var(--chart-rainbow-green-40);
+        }
+      }
+    }
+
+    &-error {
+      // Text variant
+      &.button--variant-ghost {
+        color: var(--chart-rainbow-red-100);
+      }
+
+      // Contained variant
+      &.button--variant-contained {
+        color: white;
+        background-color: var(--chart-rainbow-red-100);
+      }
+
+      // Outlined variant
+      &.button--variant-outlined {
+          color: var(--chart-rainbow-red-100);
+
+          .outline-border {
+            color: var(--chart-rainbow-red-40);
+          }
+      }
+    }
+
+    &-info {
+      // Text variant
+      &.button--variant-ghost {
+        color: var(--chart-rainbow-purple-100);
+      }
+
+      // Contained variant
+      &.button--variant-contained {
+        color: white;
+        background-color: var(--chart-rainbow-purple-100);
+      }
+
+      // Outlined variant
+      &.button--variant-outlined {
+        color: var(--chart-rainbow-purple-100);
+
+        .outline-border {
+          color: var(--chart-rainbow-purple-40);
+        }
+      }
+    }
+
+    &-warning {
+      // Text variant
+      &.button--variant-ghost {
+        color: var(--chart-rainbow-orange-100);
+      }
+
+      // Contained variant
+      &.button--variant-contained {
+        color: white;
+        background-color: var(--chart-rainbow-orange-100);
+      }
+
+      // Outlined variant
+      &.button--variant-outlined {
+        color: var(--chart-rainbow-orange-100);
+
+        .outline-border {
+          color: var(--chart-rainbow-orange-40);
+        }
+      }
+    }
+  }
+
+  // State modifiers (done)
+  &--disabled {
+    color: rgba(0, 0, 0, 0.26);
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  // Layout modifiers
+  &--full-width {
+    width: 100%;
+  }
+}

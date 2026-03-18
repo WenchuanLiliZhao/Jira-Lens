@@ -1,0 +1,112 @@
+/**
+ * Badge Component Styles
+ *
+ * AI Hint: This file contains all styles for the Badge component.
+ * Uses CSS Modules to avoid style conflicts.
+ * Follows Material Design 3 Badge specifications.
+ */
+
+.badge {
+  display: inline-flex;
+  position: relative;
+  flex-shrink: 0;
+
+  &__content {
+    position: absolute;
+    z-index: var(--z-index-badge);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-weight: 500;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  &__label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  // Variant: dot - 8px circle, no text
+  &--variant-dot {
+    .badge__content {
+      min-width: 8px;
+      height: 8px;
+      padding: 0;
+      border-radius: 50%;
+    }
+
+    .badge__label {
+      display: none;
+    }
+  }
+
+  // Variant: standard - stadium shape with number/text
+  &--variant-standard {
+    .badge__content {
+      min-height: 16px;
+      padding: 0 6px;
+      border-radius: 10px;
+    }
+
+    .badge__label {
+      font-size: 12px;
+      line-height: 16px;
+    }
+  }
+
+  // Anchor positions - badge center at corner, offset by 4px
+  &--anchor-topRight .badge__content {
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+  }
+
+  &--anchor-topLeft .badge__content {
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+  }
+
+  &--anchor-bottomRight .badge__content {
+    bottom: 0;
+    right: 0;
+    transform: translate(50%, 50%);
+  }
+
+  &--anchor-bottomLeft .badge__content {
+    bottom: 0;
+    left: 0;
+    transform: translate(-50%, 50%);
+  }
+
+  // Color modifiers (align with FAB)
+  &--color-default .badge__content {
+    color: var(--use-text-prime);
+    background-color: var(--chart-black-alpha-15-hex);
+  }
+
+  &--color-primary .badge__content {
+    color: white;
+    background-color: var(--chart-rainbow-blue-100);
+  }
+
+  &--color-error .badge__content {
+    color: white;
+    background-color: var(--chart-rainbow-red-100);
+  }
+
+  &--color-info .badge__content {
+    color: white;
+    background-color: var(--chart-rainbow-blue-100);
+  }
+
+  &--color-warning .badge__content {
+    color: white;
+    background-color: var(--chart-rainbow-orange-100);
+  }
+
+}

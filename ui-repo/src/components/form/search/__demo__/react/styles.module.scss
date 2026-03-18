@@ -1,0 +1,235 @@
+/**
+ * Search Component Demo Styles
+ */
+
+.temporary-component {
+  border: 1px dashed var(--chart-rainbow-orange-40);
+}
+
+
+.demo-container {
+  padding: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  h1 {
+    margin: 0 0 8px;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--use-text-prime);
+  }
+}
+
+.demo-intro {
+  margin: 0 0 32px;
+  font-size: 16px;
+  color: var(--use-text-secondary);
+  line-height: 1.5;
+}
+
+.demo-section {
+  margin-bottom: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--use-border-secondary);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  h2 {
+    margin: 0 0 8px;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--use-text-prime);
+  }
+
+  > p {
+    margin: 0 0 16px;
+    color: var(--use-text-secondary);
+  }
+}
+
+.demo-example {
+  padding: 24px;
+  background-color: var(--use-bg-secondary);
+  border-radius: 12px;
+  border: 1px solid var(--use-border-secondary);
+}
+
+.demo-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+
+  > * {
+    flex: 1;
+    min-width: 200px;
+  }
+}
+
+// ============ PRODUCT CARD ============
+
+.product-card {
+  padding: 16px;
+  background-color: var(--use-bg-primary);
+  border-radius: 8px;
+  transition: box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  &__name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--use-text-prime);
+    margin-bottom: 8px;
+  }
+
+  &__meta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    font-size: 13px;
+  }
+
+  &__category {
+    color: var(--use-text-secondary);
+    background-color: var(--use-bg-tertiary);
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  &__price {
+    color: var(--use-text-prime);
+    font-weight: 600;
+  }
+
+  &__stock--in {
+    color: #22c55e;
+  }
+
+  &__stock--out {
+    color: #ef4444;
+  }
+}
+
+// ============ RESULTS ============
+
+.results-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.results-header {
+  font-size: 14px;
+  color: var(--use-text-secondary);
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+  color: var(--use-text-secondary);
+  font-size: 14px;
+}
+
+// ============ FILTER SELECT ============
+
+.filter-select {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 150px;
+
+  label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--use-text-secondary);
+  }
+
+  select {
+    height: 36px;
+    padding: 0 12px;
+    border: 1px solid var(--use-border-secondary);
+    border-radius: 6px;
+    background-color: var(--use-bg-primary);
+    color: var(--use-text-prime);
+    font-size: 14px;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+      border-color: var(--use-border-active);
+    }
+  }
+}
+
+// ============ SEARCH INFO ============
+
+.search-info {
+  padding: 12px 16px;
+  background-color: var(--use-bg-tertiary);
+  border-radius: 6px;
+  font-family: monospace;
+  font-size: 12px;
+  color: var(--use-text-secondary);
+  
+  > div {
+    margin-bottom: 4px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  strong {
+    color: var(--use-text-prime);
+  }
+}
+
+// ============ API TABLE ============
+
+.api-table {
+  overflow-x: auto;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+
+    th, td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--use-border-secondary);
+    }
+
+    th {
+      font-weight: 600;
+      color: var(--use-text-prime);
+      background-color: var(--use-bg-tertiary);
+    }
+
+    td {
+      color: var(--use-text-secondary);
+
+      code {
+        padding: 2px 6px;
+        background-color: var(--use-bg-tertiary);
+        border-radius: 4px;
+        font-family: monospace;
+        font-size: 13px;
+        color: var(--use-text-prime);
+      }
+    }
+  }
+}
