@@ -1,0 +1,82 @@
+---
+description: Component structure and conventions for app/src/components
+globs: app/src/components/**/*
+alwaysApply: false
+---
+
+# Component Structure Rules
+
+When creating or modifying components in `app/src/components`, follow this structure.
+
+## Directory Layout
+
+```
+app/src/components/
+├── {category}/           # data-display, data-visualization, dev-tools, feedback,
+│                         # filters, form, general, illustrations, layout, special
+│   └── {component-name}/
+│       ├── index.ts      # Public exports only
+│       ├── the-component/
+│       │   ├── index.tsx # Main component + types
+│       │   └── styles.module.scss
+│       ├── README.md     # Optional
+│       └── DESIGN-SPEC.md # Optional
+└── shared/               # Shared utilities (hover-overlay, etc.)
+```
+
+## Categories
+
+- **data-display**: DataTable, FeedbackCard, StatCard
+- **data-visualization**: Chart, PieChart, AmapMap, etc.
+- **dev-tools**: ComponentDemoLayout, DevToolbar, DevToolsFAB, PrdAnnotation
+- **feedback**: EmptyState, LoadingState, Modal, Spinner, Toast
+- **filters**: FilterBar
+- **form**: Calendar, DateRangePicker, Form, MultiSelect, Search, Select, Slider
+- **general**: Badge, Button, ButtonGroup, DropdownMenu, FAB, Icon, Label, ProgressBar, ToggleSwitch
+- **illustrations**: Illustration404
+- **layout**: BasicLayout, BentoGrid, SwiperCarousel
+- **special**: IndexCard, PlaceholderFeature
+
+## index.ts (Component Root)
+
+```typescript
+export { ComponentName } from "./the-component";
+export type { ComponentNameProps } from "./the-component";
+```
+
+Do **not** export demo pages or `__demo__` content.
+
+## the-component/index.tsx
+
+- Use `React.forwardRef` when the component wraps a DOM element
+- Export props as `{ComponentName}Props`
+- Use `Component.displayName = "ComponentName"`
+- Structure: `// ============ TYPES ============` then `// ============ COMPONENT ============`
+- Include JSDoc for props with `@default` when applicable
+
+```typescript
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: ButtonVariant;
+  /** @default "medium" */
+  size?: ButtonSize;
+}
+
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(...);
+Button.displayName = "Button";
+```
+
+## Styles
+
+- Use SCSS modules: `styles.module.scss`
+- BEM-like naming: `component-name`, `component-name--variant-*`, `component-name__element`
+- Import from `@/` or relative paths: `../../icon` for sibling components
+
+## Category Index
+
+After creating a component, add to the category index:
+
+```typescript
+// app/src/components/{category}/index.ts
+export { NewComponent } from './new-component';
+export type { NewComponentProps } from './new-component';
+```

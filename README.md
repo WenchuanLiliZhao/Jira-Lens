@@ -60,14 +60,14 @@ Jira Lens (Extension UI)
 | View switching (board / list / timeline) | 🔲 Prototyping |
 | MCP onboarding flow | ✅ Designed |
 | Unified data model | 🔲 In definition |
-| Extension scaffold | 🔲 Planned |
+| Extension scaffold | ✅ Done |
 
 ---
 
 ## Tech Stack
 
 - **Extension:** VS Code Extension API (TypeScript)
-- **UI components:** [UI-304](https://github.com/WenchuanLiliZhao/ai-workflows-all-in-one) — React + TypeScript + SCSS
+- **UI components:** React + TypeScript + SCSS (in `app/`)
 - **Jira layer:** [`jira-mcp`](https://github.com/WenchuanLiliZhao/jira-mcp) (Node.js, Jira Cloud REST API)
 
 ---

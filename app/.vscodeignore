@@ -1,0 +1,11 @@
+src/
+figma-tokens/
+public/
+scripts/
+.vscode/
+node_modules/
+out/package.json
+**/*.map
+**/*.ts
+!out/**
+!dist/**
