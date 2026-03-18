@@ -34,39 +34,48 @@ Jira Lens addresses these with two key architectural choices Atlascode cannot re
 
 ## Architecture
 
-### ADR-001: Embed MCP Server Inside the Extension
+### ADR-001: Extension + Standalone MCP Server (Decoupled)
 
-The MCP server is embedded inside the VS Code Extension — not a separate process. Both the Webview UI and the MCP endpoint run within the same extension process.
+The Jira Lens extension and [jira-mcp](https://github.com/WenchuanLiliZhao/jira-mcp) are **separate projects** that share credentials:
 
 ```
 Jira Lens Extension
-├── Jira API Client        ← shared layer: auth, requests, cache
+├── Jira API Client        ← built-in: auth, requests (SecretStorage + settings)
 ├── Webview UI              ← human: renders Notion-style interface
-└── MCP Server (embedded)   ← AI: exposes MCP endpoint to Cursor
+└── credential sync         ← writes to ~/Jira-MCP/config/secrets.json on save
+
+jira-mcp (optional, standalone)
+├── MCP Server              ← AI: exposes Jira tools to Cursor AI Chat
+└── reads secrets.json      ← stays in sync automatically
 ```
 
 **Rationale:**
-- **Single credential store** — credentials configured once, both layers authenticated immediately via VS Code SecretStorage
-- **Shared API client and cache** — no inconsistency between what the human sees and what the AI reads
-- **Zero-config for AI** — MCP server starts automatically on extension activation, no manual connection setup
-- **Aligned with IDE-first scope** — standalone MCP usage outside VS Code / Cursor is not a target scenario
+- **Independent update cycles** — jira-mcp can be updated via `git pull` without touching the extension
+- **No hard dependency** — Extension works without jira-mcp; jira-mcp works without the Extension
+- **Single credential entry** — credentials entered in the Extension UI are synced to jira-mcp automatically
+- **Future-proof** — jira-mcp can also be used with Claude Desktop or other MCP clients
 
-**Trade-off:** The MCP can no longer run independently outside of VS Code / Cursor (e.g. in Claude Desktop). Mitigation path: extract the Jira API Client into a shared npm package if standalone usage becomes necessary.
+**Trade-off:** Two separate Jira API clients (extension's built-in vs. jira-mcp's). Mitigated by credential sync; a shared npm package could unify them later if needed.
 
 ---
 
 ## Basic Interaction Flow
 
-### Step 1 — Credential Input
+### Step 0 — Credential Input
 On first launch, a Webview-based form prompts for `JIRA_DOMAIN`, `JIRA_EMAIL`, and `JIRA_TOKEN`. Credentials are persisted as:
 - `JIRA_DOMAIN` + `JIRA_EMAIL` → VS Code `settings.json` (visible in Settings UI)
 - `JIRA_TOKEN` → VS Code **SecretStorage API** (encrypted, never in version control)
 
-### Step 2 — Connecting to Jira
+When saved, credentials are also synced to `~/Jira-MCP/config/secrets.json` (if the directory exists) so the standalone jira-mcp server stays in sync.
+
+### Step 1 — Connecting to Jira
 A connection progress screen walks through each stage in real time: validating credentials → fetching projects → finalizing connection. Errors show a clear message with recommended action. On subsequent launches, the extension connects silently.
 
-### Step 3 — Main Interface (MVP)
+### Step 2 — Main Interface (MVP)
 Once connected, the MVP view is a **Projects card list** — a grid of cards, each representing a Jira project the user has access to. Each card shows project name/key, issue count, and last updated timestamp. Clicking navigates into that project's issue list.
+
+### Optional: jira-mcp Installation Banner
+After reaching the main interface, a dismissable banner suggests installing [jira-mcp](https://github.com/WenchuanLiliZhao/jira-mcp) for Cursor AI Chat integration. Clicking "Install via AI" opens Cursor's native Chat panel with a pre-composed install prompt. The banner is suppressed if jira-mcp is already installed or the user has dismissed it (state persisted in VS Code `globalState`).
 
 ---
 

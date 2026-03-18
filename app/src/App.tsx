@@ -1,8 +1,12 @@
-import { Content } from "./jira-lens/content";
+import { Content, JiraLensErrorBoundary } from "./jira-lens/content";
 import "./global-styles/0-index.scss"
 
 function App() {
-  return <Content />;
+  return (
+    <JiraLensErrorBoundary>
+      <Content />
+    </JiraLensErrorBoundary>
+  );
 }
 
 export default App

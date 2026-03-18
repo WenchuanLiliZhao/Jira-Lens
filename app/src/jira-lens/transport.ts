@@ -11,19 +11,34 @@
  *   import { getProjects, getIssues, getIssue } from './transport';
  *   const projects = await getProjects();
  *
- * How VS Code messaging works:
- *   1. Webview sends { id, type, ...params } via vscode.postMessage()
- *   2. Extension host handles the message, calls Jira, replies with { id, result } or { id, error }
- *   3. Webview receives the reply via window.addEventListener('message', ...)
- *   4. The pending promise resolves or rejects
+ * PUSH MESSAGES
+ * ─────────────
+ * The extension can send unsolicited messages (no id) to the Webview.
+ * Subscribe with: onPush(handler)
+ * Currently used for: CONNECT_PROGRESS stages during connection flow.
+ *
+ * INITIAL STEP
+ * ────────────
+ * The extension injects window.__INITIAL_STEP__ = N before the Webview loads.
+ * Import `initialStep` to read it. Defaults to 2 in browser dev mode (skips
+ * onboarding so `npm run dev` continues to work as before).
+ *
+ * STEPS:  0 = credentials form · 1 = connecting · 2 = main interface
  */
 
 // ── Environment detection ─────────────────────────────────────────────────────
 
 declare const acquireVsCodeApi: () => { postMessage: (msg: unknown) => void };
 
-const isVSCode: boolean = typeof (window as unknown as Record<string, unknown>).__IS_VSCODE__ === 'boolean'
-  && (window as unknown as Record<string, unknown>).__IS_VSCODE__ === true;
+const isVSCode: boolean =
+  typeof (window as unknown as Record<string, unknown>).__IS_VSCODE__ === 'boolean' &&
+  (window as unknown as Record<string, unknown>).__IS_VSCODE__ === true;
+
+// ── Initial step (injected by extension host) ─────────────────────────────────
+
+export const initialStep: number = isVSCode
+  ? (((window as unknown as Record<string, unknown>).__INITIAL_STEP__ as number) ?? 0)
+  : 2; // browser dev mode: skip onboarding
 
 // ── VS Code postMessage channel ───────────────────────────────────────────────
 
@@ -39,16 +54,62 @@ const pending = new Map<string, {
   reject: (reason: Error) => void;
 }>();
 
+// ── Push message types ────────────────────────────────────────────────────────
+
+export type ConnectStage = 'validating' | 'fetching' | 'done' | 'error';
+
+export interface ConnectProgressMessage {
+  type: 'CONNECT_PROGRESS';
+  stage: ConnectStage;
+  message?: string;
+}
+
+export type PushMessage = ConnectProgressMessage;
+
+// ── Push message registry ─────────────────────────────────────────────────────
+
+type PushHandler = (msg: PushMessage) => void;
+const pushHandlers: PushHandler[] = [];
+
+/**
+ * Subscribe to push messages from the extension host.
+ * Returns an unsubscribe function — call it in useEffect cleanup.
+ */
+export function onPush(handler: PushHandler): () => void {
+  pushHandlers.push(handler);
+  return () => {
+    const idx = pushHandlers.indexOf(handler);
+    if (idx !== -1) pushHandlers.splice(idx, 1);
+  };
+}
+
+// ── Message listener ──────────────────────────────────────────────────────────
+
 if (isVSCode) {
-  window.addEventListener('message', (event: MessageEvent<{ id: string; result?: unknown; error?: string }>) => {
-    const { id, result, error } = event.data;
-    const p = pending.get(id);
-    if (!p) return;
-    pending.delete(id);
-    if (error !== undefined) {
-      p.reject(new Error(error));
-    } else {
-      p.resolve(result);
+  window.addEventListener('message', (
+    event: MessageEvent<{ id?: string; result?: unknown; error?: string; type?: string }>
+  ) => {
+    const data = event.data;
+
+    // Push message: no id, has type
+    if (!data.id && data.type) {
+      const push = data as unknown as PushMessage;
+      for (const handler of pushHandlers) {
+        handler(push);
+      }
+      return;
+    }
+
+    // Request-response: match by id
+    if (data.id) {
+      const p = pending.get(data.id);
+      if (!p) return;
+      pending.delete(data.id);
+      if (data.error !== undefined) {
+        p.reject(new Error(data.error));
+      } else {
+        p.resolve(data.result);
+      }
     }
   });
 }
@@ -87,7 +148,51 @@ async function browserPost<T>(path: string, body: unknown): Promise<T> {
   return res.json() as Promise<T>;
 }
 
-// ── Public API ────────────────────────────────────────────────────────────────
+// ── Onboarding actions (VS Code only) ─────────────────────────────────────────
+
+/** Save credentials via SecretStorage. Extension will then push CONNECT_PROGRESS. */
+export async function saveCredentials(domain: string, email: string, token: string): Promise<void> {
+  if (!isVSCode) return;
+  await callExtension('SAVE_CREDENTIALS', { domain, email, token });
+}
+
+/**
+ * Delete the stored API token from SecretStorage.
+ * Used by the "Reset connection" nav action so the user can re-enter credentials.
+ * Domain and email are left in VS Code settings to pre-fill the form.
+ */
+export async function resetCredentials(): Promise<void> {
+  if (!isVSCode) return;
+  await callExtension('RESET_CREDENTIALS');
+}
+
+// ── Optional jira-mcp banner (VS Code only) ──────────────────────────────────
+
+/** Returns whether jira-mcp is installed (~/Jira-MCP/package.json exists). */
+export async function getMcpInstallState(): Promise<{ installed: boolean }> {
+  if (!isVSCode) return { installed: false };
+  return callExtension('GET_MCP_INSTALL_STATE') as Promise<{ installed: boolean }>;
+}
+
+/** Check whether the "Install jira-mcp" banner should be shown. */
+export async function getMcpBannerState(): Promise<{ show: boolean }> {
+  if (!isVSCode) return { show: false };
+  return callExtension('GET_MCP_BANNER_STATE') as Promise<{ show: boolean }>;
+}
+
+/** Fire-and-forget: ask extension to open Cursor Chat with MCP install prompt. */
+export function installMcpOptional(): void {
+  if (!isVSCode) return;
+  vscodeApi!.postMessage({ id: String(++_messageId), type: 'INSTALL_MCP_OPTIONAL' });
+}
+
+/** Dismiss the jira-mcp banner permanently. */
+export async function dismissMcpBanner(): Promise<void> {
+  if (!isVSCode) return;
+  await callExtension('DISMISS_MCP_BANNER');
+}
+
+// ── Public Jira API ───────────────────────────────────────────────────────────
 
 export interface JiraProject {
   key: string;

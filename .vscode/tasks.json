@@ -1,0 +1,28 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build-webview",
+      "type": "shell",
+      "command": "npm run build:webview",
+      "options": {
+        "cwd": "${workspaceFolder}/app"
+      },
+      "group": "build",
+      "problemMatcher": "$tsc",
+      "detail": "tsc -b && vite build → dist/"
+    },
+    {
+      "label": "build-extension",
+      "type": "shell",
+      "command": "npm run build:extension",
+      "options": {
+        "cwd": "${workspaceFolder}/app"
+      },
+      "group": "build",
+      "problemMatcher": "$tsc",
+      "detail": "tsc -p tsconfig.extension.json && write out/package.json",
+      "dependsOn": "build-webview"
+    }
+  ]
+}

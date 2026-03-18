@@ -22,7 +22,22 @@
         "command": "jira-lens.open",
         "title": "Open Jira Lens"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "Jira Lens",
+      "properties": {
+        "jira-lens.domain": {
+          "type": "string",
+          "default": "",
+          "description": "Jira site domain (e.g. your-company.atlassian.net)"
+        },
+        "jira-lens.email": {
+          "type": "string",
+          "default": "",
+          "description": "Atlassian account email used for API authentication"
+        }
+      }
+    }
   },
   "scripts": {
     "dev": "vite",

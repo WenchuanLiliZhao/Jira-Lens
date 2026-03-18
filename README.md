@@ -33,21 +33,18 @@ Key properties:
 
 ## Relationship to `jira-mcp`
 
-[`jira-mcp`](https://github.com/WenchuanLiliZhao/jira-mcp) is the companion MCP server that connects **Cursor AI** to Jira. It remains a standalone tool.
-
-Jira Lens uses `jira-mcp` as its Jira data layer during setup:
-
-- The extension's onboarding flow guides you through installing and configuring `jira-mcp`
-- Once configured, Jira Lens reads from the same credentials
-- You can use both independently or together
+[`jira-mcp`](https://github.com/WenchuanLiliZhao/jira-mcp) is a **separate, optional** MCP server that connects **Cursor AI Chat** to Jira. Jira Lens does **not** depend on it — the extension has its own built-in Jira API client and manages credentials independently via VS Code SecretStorage.
 
 ```
-Jira Lens (Extension UI)
-        │
-        └── jira-mcp (MCP Server)  ← also used by Cursor AI chat
-                │
-                └── Jira Cloud API
+Jira Lens Extension ──── own Jira API client ──── Jira Cloud API
+                                                       ↑
+jira-mcp (optional) ──── MCP server ─────────────── Jira Cloud API
+  └── used by Cursor AI Chat
 ```
+
+**Credential sync:** When you enter credentials in Jira Lens, the extension also writes them to `~/Jira-MCP/config/secrets.json` (if the directory exists). This means installing jira-mcp later requires no extra credential setup.
+
+**Recommendation flow:** After connecting, Jira Lens shows a dismissable banner suggesting jira-mcp installation for users who want Jira access in Cursor AI Chat. Clicking "Install via AI" opens Cursor Chat with an automated setup prompt.
 
 ---
 
@@ -58,7 +55,8 @@ Jira Lens (Extension UI)
 | Observation Layer — cross-project view | 🔲 Prototyping |
 | Notion-style inline editing | 🔲 Prototyping |
 | View switching (board / list / timeline) | 🔲 Prototyping |
-| MCP onboarding flow | ✅ Designed |
+| Credential onboarding flow | ✅ Done |
+| Optional jira-mcp recommendation | ✅ Done |
 | Unified data model | 🔲 In definition |
 | Extension scaffold | ✅ Done |
 
@@ -77,7 +75,7 @@ Jira Lens (Extension UI)
 - VS Code or Cursor
 - Node.js 18+
 - A Jira Cloud account with an API token
-- [`jira-mcp`](https://github.com/WenchuanLiliZhao/jira-mcp) installed and configured
+- [`jira-mcp`](https://github.com/WenchuanLiliZhao/jira-mcp) *(optional — for Cursor AI Chat integration)*
 
 ---
 
