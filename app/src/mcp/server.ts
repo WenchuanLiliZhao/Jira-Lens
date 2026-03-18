@@ -24,6 +24,7 @@ import {
 
 import {
   type Credentials,
+  buildBrowseUrl,
   confluenceFetch,
   fetchProjects,
   fetchIssuesByJQL,
@@ -491,17 +492,24 @@ async function handleTool(name: string, args: Args): Promise<unknown> {
       const jql = extraJql
         ? `project = ${project} AND ${extraJql}`
         : `project = ${project} ORDER BY updated DESC`;
-      return fetchIssuesByJQL(creds, jql, max_results ?? 50);
+      const issues = await fetchIssuesByJQL(creds, jql, max_results ?? 50);
+      return issues.map(i => ({ ...i, browse_url: buildBrowseUrl(creds, i.key) }));
     }
 
-    case 'get_issue':
-      return fetchIssueDetail(creds, args.key);
+    case 'get_issue': {
+      const issue = await fetchIssueDetail(creds, args.key);
+      return { ...issue, browse_url: buildBrowseUrl(creds, issue.key) };
+    }
 
-    case 'search_issues':
-      return fetchIssuesByJQL(creds, args.jql, args.max_results ?? 50);
+    case 'search_issues': {
+      const issues = await fetchIssuesByJQL(creds, args.jql, args.max_results ?? 50);
+      return issues.map(i => ({ ...i, browse_url: buildBrowseUrl(creds, i.key) }));
+    }
 
-    case 'get_my_issues':
-      return fetchIssuesByJQL(creds, 'assignee = currentUser() ORDER BY updated DESC', args?.max_results ?? 50);
+    case 'get_my_issues': {
+      const issues = await fetchIssuesByJQL(creds, 'assignee = currentUser() ORDER BY updated DESC', args?.max_results ?? 50);
+      return issues.map(i => ({ ...i, browse_url: buildBrowseUrl(creds, i.key) }));
+    }
 
     case 'list_sprints': {
       const boards = await fetchBoards(creds, args.project);
@@ -510,8 +518,10 @@ async function handleTool(name: string, args: Args): Promise<unknown> {
       return { boards, sprints: allSprints.flat() };
     }
 
-    case 'get_sprint_issues':
-      return fetchSprintIssues(creds, args.sprint_id, args.max_results ?? 50);
+    case 'get_sprint_issues': {
+      const issues = await fetchSprintIssues(creds, args.sprint_id, args.max_results ?? 50);
+      return issues.map(i => ({ ...i, browse_url: buildBrowseUrl(creds, i.key) }));
+    }
 
     case 'create_sprint':
       return createSprint(creds, args.board_id, {

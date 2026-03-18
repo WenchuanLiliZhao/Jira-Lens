@@ -1890,7 +1890,8 @@ async function jiraFetch(creds, path, opts = {}) {
     let msg = `HTTP ${res.status}`;
     try {
       const parsed = JSON.parse(text);
-      msg = parsed.errorMessages?.[0] ?? parsed.message ?? text;
+      const fieldErrors = parsed.errors ? Object.values(parsed.errors).filter(Boolean) : [];
+      msg = parsed.errorMessages?.find(Boolean) ?? fieldErrors[0] ?? parsed.message ?? msg;
     } catch {
     }
     throw new Error(msg);

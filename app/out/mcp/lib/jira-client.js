@@ -10,6 +10,9 @@
  *   3. CLI scripts    (credentials from env vars)
  */
 import markdownToAdf from 'md-to-adf';
+export function buildBrowseUrl(creds, key) {
+    return `https://${creds.domain}/browse/${key}`;
+}
 // ── Authenticated fetch wrappers ─────────────────────────────────────────────
 export async function jiraFetch(creds, path, opts = {}) {
     const auth = Buffer.from(`${creds.email}:${creds.token}`).toString('base64');
@@ -27,7 +30,11 @@ export async function jiraFetch(creds, path, opts = {}) {
         let msg = `HTTP ${res.status}`;
         try {
             const parsed = JSON.parse(text);
-            msg = parsed.errorMessages?.[0] ?? parsed.message ?? text;
+            const fieldErrors = parsed.errors ? Object.values(parsed.errors).filter(Boolean) : [];
+            msg = parsed.errorMessages?.find(Boolean)
+                ?? fieldErrors[0]
+                ?? parsed.message
+                ?? msg;
         }
         catch { /* use default msg */ }
         throw new Error(msg);
@@ -126,7 +133,7 @@ export async function fetchIssuesByJQL(creds, jql, maxResults = 50, fields = ISS
     }
     catch (e) {
         const msg = (e.message ?? '').toLowerCase();
-        if (msg.includes('removed') || msg.includes('deprecated') || msg.includes('404')) {
+        if (msg.includes('removed') || msg.includes('deprecated') || msg.includes('404') || msg.includes('500')) {
             data = await jiraFetch(creds, '/rest/api/3/search', {
                 method: 'POST',
                 body: JSON.stringify({ jql, fields, maxResults, startAt: 0 }),
@@ -241,7 +248,7 @@ export async function fetchIssuesForProject(creds, project, jql) {
     }
     catch (e) {
         const msg = (e.message ?? '').toLowerCase();
-        if (msg.includes('removed') || msg.includes('deprecated') || msg.includes('404')) {
+        if (msg.includes('removed') || msg.includes('deprecated') || msg.includes('404') || msg.includes('500')) {
             data = await jiraFetch(creds, '/rest/api/3/search', {
                 method: 'POST', body: JSON.stringify({ ...body, startAt: 0 }),
             });
@@ -310,7 +317,7 @@ export async function createIssue(creds, opts) {
     if (opts.parent)
         fields.parent = { key: opts.parent };
     if (opts.story_points != null)
-        fields.story_points = opts.story_points;
+        fields['customfield_10016'] = opts.story_points;
     const data = await jiraFetch(creds, '/rest/api/3/issue', {
         method: 'POST',
         body: JSON.stringify({ fields }),
@@ -341,7 +348,7 @@ export async function updateIssue(creds, key, updates) {
     if (updates.parent !== undefined)
         fields.parent = { key: updates.parent };
     if (updates.story_points !== undefined)
-        fields.story_points = updates.story_points;
+        fields['customfield_10016'] = updates.story_points;
     await jiraFetch(creds, `/rest/api/3/issue/${key}`, {
         method: 'PUT',
         body: JSON.stringify({ fields }),

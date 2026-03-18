@@ -28360,6 +28360,9 @@ var StdioServerTransport = class {
 
 // src/lib/jira-client.ts
 var import_md_to_adf = __toESM(require_dist2(), 1);
+function buildBrowseUrl(creds2, key) {
+  return `https://${creds2.domain}/browse/${key}`;
+}
 async function jiraFetch(creds2, path, opts = {}) {
   const auth = Buffer.from(`${creds2.email}:${creds2.token}`).toString("base64");
   const res = await fetch(`https://${creds2.domain}${path}`, {
@@ -28376,7 +28379,8 @@ async function jiraFetch(creds2, path, opts = {}) {
     let msg = `HTTP ${res.status}`;
     try {
       const parsed = JSON.parse(text);
-      msg = parsed.errorMessages?.[0] ?? parsed.message ?? text;
+      const fieldErrors = parsed.errors ? Object.values(parsed.errors).filter(Boolean) : [];
+      msg = parsed.errorMessages?.find(Boolean) ?? fieldErrors[0] ?? parsed.message ?? msg;
     } catch {
     }
     throw new Error(msg);
@@ -28489,7 +28493,7 @@ async function fetchIssuesByJQL(creds2, jql, maxResults = 50, fields = ISSUE_LIS
     });
   } catch (e) {
     const msg = (e.message ?? "").toLowerCase();
-    if (msg.includes("removed") || msg.includes("deprecated") || msg.includes("404")) {
+    if (msg.includes("removed") || msg.includes("deprecated") || msg.includes("404") || msg.includes("500")) {
       data = await jiraFetch(creds2, "/rest/api/3/search", {
         method: "POST",
         body: JSON.stringify({ jql, fields, maxResults, startAt: 0 })
@@ -28616,7 +28620,7 @@ async function createIssue(creds2, opts) {
   if (opts.priority) fields.priority = { name: opts.priority };
   if (opts.labels?.length) fields.labels = opts.labels;
   if (opts.parent) fields.parent = { key: opts.parent };
-  if (opts.story_points != null) fields.story_points = opts.story_points;
+  if (opts.story_points != null) fields["customfield_10016"] = opts.story_points;
   const data = await jiraFetch(creds2, "/rest/api/3/issue", {
     method: "POST",
     body: JSON.stringify({ fields })
@@ -28642,7 +28646,7 @@ async function updateIssue(creds2, key, updates) {
   if (updates.priority !== void 0) fields.priority = { name: updates.priority };
   if (updates.labels !== void 0) fields.labels = updates.labels;
   if (updates.parent !== void 0) fields.parent = { key: updates.parent };
-  if (updates.story_points !== void 0) fields.story_points = updates.story_points;
+  if (updates.story_points !== void 0) fields["customfield_10016"] = updates.story_points;
   await jiraFetch(creds2, `/rest/api/3/issue/${key}`, {
     method: "PUT",
     body: JSON.stringify({ fields })
@@ -30500,22 +30504,31 @@ async function handleTool(name, args) {
     case "list_issues": {
       const { project, jql: extraJql, max_results } = args;
       const jql = extraJql ? `project = ${project} AND ${extraJql}` : `project = ${project} ORDER BY updated DESC`;
-      return fetchIssuesByJQL(creds, jql, max_results ?? 50);
+      const issues = await fetchIssuesByJQL(creds, jql, max_results ?? 50);
+      return issues.map((i) => ({ ...i, browse_url: buildBrowseUrl(creds, i.key) }));
     }
-    case "get_issue":
-      return fetchIssueDetail(creds, args.key);
-    case "search_issues":
-      return fetchIssuesByJQL(creds, args.jql, args.max_results ?? 50);
-    case "get_my_issues":
-      return fetchIssuesByJQL(creds, "assignee = currentUser() ORDER BY updated DESC", args?.max_results ?? 50);
+    case "get_issue": {
+      const issue2 = await fetchIssueDetail(creds, args.key);
+      return { ...issue2, browse_url: buildBrowseUrl(creds, issue2.key) };
+    }
+    case "search_issues": {
+      const issues = await fetchIssuesByJQL(creds, args.jql, args.max_results ?? 50);
+      return issues.map((i) => ({ ...i, browse_url: buildBrowseUrl(creds, i.key) }));
+    }
+    case "get_my_issues": {
+      const issues = await fetchIssuesByJQL(creds, "assignee = currentUser() ORDER BY updated DESC", args?.max_results ?? 50);
+      return issues.map((i) => ({ ...i, browse_url: buildBrowseUrl(creds, i.key) }));
+    }
     case "list_sprints": {
       const boards = await fetchBoards(creds, args.project);
       if (boards.length === 0) throw new Error(`No boards found for project ${args.project}`);
       const allSprints = await Promise.all(boards.map((b2) => fetchSprints(creds, b2.id, args.state)));
       return { boards, sprints: allSprints.flat() };
     }
-    case "get_sprint_issues":
-      return fetchSprintIssues(creds, args.sprint_id, args.max_results ?? 50);
+    case "get_sprint_issues": {
+      const issues = await fetchSprintIssues(creds, args.sprint_id, args.max_results ?? 50);
+      return issues.map((i) => ({ ...i, browse_url: buildBrowseUrl(creds, i.key) }));
+    }
     case "create_sprint":
       return createSprint(creds, args.board_id, {
         name: args.name,
