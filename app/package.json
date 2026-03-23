@@ -12,9 +12,6 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [
-    "onCommand:jira-lens.open"
-  ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
@@ -62,7 +59,8 @@
     "figma-colors": "python3 ../scripts/map_figma_tokens_to_scss.py",
     "update-demo-indexes": "python3 ../scripts/regenerate_demo_indexes.py",
     "update-pages": "npm run update-demo-indexes && python3 ../scripts/update_index_files.py",
-    "publish-base-table": "python3 ../scripts/publish_base_table.py"
+    "publish-base-table": "python3 ../scripts/publish_base_table.py",
+    "confluence:publish-discussion": "node scripts/publish-confluence-discussion.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.27.1",

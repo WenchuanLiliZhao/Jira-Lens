@@ -79,6 +79,13 @@ jira-mcp (optional) ──── MCP server ────────────
 
 ---
 
+## Docs
+
+- **[Technical discussions (AI Portal, Webview sync, local cache)](docs/jira-lens-technical-discussions.md)** — architecture notes from internal exploration.
+- **Publish that doc to Confluence:** set `JIRA_DOMAIN`, `JIRA_EMAIL`, `JIRA_TOKEN`, then from `app/` run `npm run confluence:publish-discussion`. See [docs/CONFLUENCE-PUBLISH.md](docs/CONFLUENCE-PUBLISH.md).
+
+---
+
 ## Development Tracking
 
 Issues and exploration are tracked in the [JL Jira project](https://zhaowenchuan.atlassian.net/jira/software/projects/JL/boards).
